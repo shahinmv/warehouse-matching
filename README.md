@@ -3,7 +3,8 @@ Authentication and login system with a smart search and query engine in the back
 
 ## State of the app
 18.05.2022 - Still designing the UI elements for home, login and register page. \
-18.05.2022 - Added backend for login, signup and logout features.
+18.05.2022 - Added backend for login, signup and logout features. \
+18.05.2022 - Added admin rank to users, working on admin page for adding warehouses.
 
 ## Technologies
 
