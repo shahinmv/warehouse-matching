@@ -1,3 +1,4 @@
+from email.policy import default
 from db import db
 from flask_login import UserMixin
 
@@ -10,6 +11,7 @@ class User(UserMixin, db.Model):
     surname = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+    isAdmin = db.Column(db.Boolean, default=False)
 
     def __init__(self, name, surname, email, password):
         self.name = name

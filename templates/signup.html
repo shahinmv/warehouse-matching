@@ -7,7 +7,7 @@
         <div class="tab-content">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <div class="notification is-danger">
+                <div class="alert alert-secondary" role="alert">
                     {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
                 </div>
                 {% endif %}
@@ -54,7 +54,7 @@
         
                 <div class="form-check d-flex justify-content-center mb-4">
                     <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                        aria-describedby="registerCheckHelpText" />
+                        aria-describedby="registerCheckHelpText" required/>
                     <label class="form-check-label" for="registerCheck">
                         I have read and agree to the terms
                     </label>
