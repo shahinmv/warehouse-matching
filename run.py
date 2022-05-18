@@ -2,6 +2,7 @@ from flask import Flask
 from db import db
 
 from main import main as main_blueprint
+from auth import auth as auth_blueprint
 
 app = Flask(__name__)
 
@@ -10,6 +11,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.register_blueprint(main_blueprint)
+
+app.register_blueprint(auth_blueprint)
 
 @app.before_first_request
 def create_tables():
