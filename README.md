@@ -12,7 +12,7 @@ Authentication and login system with a smart search and query engine in the back
 - Flask SQL Alchemy
 - Bootstrap 5.1.3
 - Material Design 4.0.0
-- Postgresql
+- PostgreSQL
 
 ## Usage
 
