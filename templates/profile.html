@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>This the homepage</h1>
-  {% if current_user.is_authenticated%}
+<h1>This the profile page</h1>
   <p>Welcome {{current_user.name}}  {{current_user.surname}}</p>
-  {% endif %}
 {% endblock %}
