@@ -18,11 +18,11 @@ Authentication and login system with a smart search and query engine in the back
 - Heroku
 
 ## Access to database
-Host:      ec2-52-48-159-67.eu-west-1.compute.amazonaws.com
-Database:  d22qmtgc4978dh
-Post:      5432
-Username:  yqquhofwbxigmm
-Password:  d2f6ddf9087969303f5eedf87b5e124060d4b25532ff0358f830b70ed9045b62
+Host:      ec2-52-48-159-67.eu-west-1.compute.amazonaws.com \
+Database:  d22qmtgc4978dh \
+Post:      5432 \
+Username:  yqquhofwbxigmm \
+Password:  d2f6ddf9087969303f5eedf87b5e124060d4b25532ff0358f830b70ed9045b62 
 
 ## Usage
 
