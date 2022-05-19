@@ -6,7 +6,8 @@ Authentication and login system with a smart search and query engine in the back
 18.05.2022 - Added backend for login, signup and logout features. \
 18.05.2022 - Added admin rank to users, working on admin page for adding warehouses. \
 18.05.2022 - Added flash messages, required checkbox in sign up page. \
-19.05.2022 - Deployed postgresql database on heroku. Credentials will be given below. 
+19.05.2022 - Deployed postgresql database on heroku. Credentials will be given below. \
+19.05.2022 - Added auto locate features to get location of users. 
 
 ## Technologies
 
@@ -16,6 +17,7 @@ Authentication and login system with a smart search and query engine in the back
 - Material Design 4.0.0
 - PostgreSQL
 - Heroku
+- Google Maps API
 
 ## Access to database
 **Host**:      ec2-52-48-159-67.eu-west-1.compute.amazonaws.com \
