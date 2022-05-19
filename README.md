@@ -7,7 +7,7 @@ Authentication and login system with a smart search and query engine in the back
 18.05.2022 - Added admin rank to users, working on admin page for adding warehouses. \
 18.05.2022 - Added flash messages, required checkbox in sign up page. \
 19.05.2022 - Deployed postgresql database on heroku. Credentials will be given below. \
-19.05.2022 - Added auto locate features to get location of users. 
+19.05.2022 - Added auto locate features to get location of users(Location is printed on terminal, not on web app yet). 
 
 ## Technologies
 
