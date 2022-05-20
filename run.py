@@ -3,6 +3,8 @@ from flask_login import LoginManager
 from auth import auth as auth_blueprint
 from main import main as main_blueprint
 from models.user import User
+from models.warehouse import Warehouse
+from models.warehouse_service import  WarehouseServices
 
 from db import db
 
