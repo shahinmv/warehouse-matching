@@ -158,6 +158,9 @@
               <button type="button" class="btn btn-link btn-sm btn-rounded">
                 <a href="{{  url_for('main.warehouse_view', warehouse_id=warehouse.id)  }}">EDIT</a>
               </button>
+              <button type="button" class="btn btn-link btn-sm btn-rounded">
+                <a href="{{  url_for('main.warehouse_price', warehouse_id=warehouse.id)  }}">PRICES</a>
+              </button>
             </td>
           </tr>
           {% endfor %}

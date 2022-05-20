@@ -6,6 +6,8 @@ from flask_login import login_required, current_user
 from models.warehouse import Warehouse
 import json
 
+from models.warehouse_service import WarehouseServices
+
 API_KEY = "AIzaSyDPYgtducg288JoPwZ3utMYUbKt_nxtAu4"
 
 main = Blueprint('main', __name__)
@@ -53,14 +55,13 @@ def admin_post():
 
     return redirect(url_for('main.admin'))
 
-@main.route('/admin/<int:warehouse_id>')
+@main.route('/admin/details/<int:warehouse_id>')
 @login_required
 def warehouse_view(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).one()
-
     return render_template('warehouse_view.html', data = data)
 
-@main.route('/admin/<int:warehouse_id>', methods = ['POST'])
+@main.route('/admin/details/<int:warehouse_id>', methods = ['POST'])
 def admin_edit(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).one()
 
@@ -78,6 +79,63 @@ def admin_edit(warehouse_id):
 
     db.session.commit()
     return redirect(url_for('main.admin'))
+
+@main.route('/admin/prices/<int:warehouse_id>')
+@login_required
+def warehouse_price(warehouse_id):
+    data = Warehouse.query.filter_by(id=warehouse_id).one()
+    return render_template('warehouse_price.html', data = data)
+
+@main.route('/admin/prices/<int:warehouse_id>', methods = ['POST'])
+def admin_price(warehouse_id):
+    print("test")
+    data = Warehouse.query.filter_by(id=warehouse_id).one()
+    check = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+
+    if not check:
+        storage = request.form.get("storage")
+        item_picking = request.form.get("item_picking")
+        palette_packaging = request.form.get("palette_packaging")
+        packaging_material = request.form.get("packaging_material")
+
+        new_wprice = WarehouseServices(storage, item_picking, palette_packaging, packaging_material, warehouse_id)
+
+        if data.labelling:
+            new_wprice.set_labelling(request.form.get("goods_receiving_labelling"))
+
+        if data.manual_geo_data_entry:
+            new_wprice.set_manualgeodata(request.form.get("goods_receiving_manuel_geo_data"))
+
+        if data.item_packaging:
+            new_wprice.set_receivingprocessing(request.form.get("item_packaging"))
+
+        if data.palette_packaging:
+            new_wprice.set_packaging(request.form.get("palette_packaging"))
+        
+        db.session.add(new_wprice)
+        db.session.commit()
+        return redirect(url_for('main.admin'))
+    else:
+        check.storage = request.form.get("storage")
+        check.item_picking = request.form.get("item_picking")
+        check.palette_packaging = request.form.get("palette_packaging")
+        check.packaging_material = request.form.get("packaging_material")
+
+        if data.labelling:
+            check.goods_receiving_labelling = request.form.get("goods_receiving_labelling")
+
+        if data.manual_geo_data_entry:
+            check.goods_receiving_manuel_geo_data = request.form.get("goods_receiving_manuel_geo_data")
+
+        if data.item_packaging:
+            check.item_packaging = request.form.get("item_packaging")
+
+        if data.palette_packaging:
+            check.palette_packaging = request.form.get("palette_packaging")
+
+        db.session.commit()
+
+        return redirect(url_for('main.admin'))
 
 
 

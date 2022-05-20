@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      
+        <div class="row justify-content-center">
+        
+            <div class="col-lg-8">
+            <form method="POST" action="/admin/prices/{{data.id}}">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Storage</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="md-form">
+                    {% if data.storage %}
+                    <input type="number" id="storage"  name="storage" class="form-control" value= "{{data.storage}}">
+                    {% else %}
+                    <input type="number" id="storage"  name="storage" class="form-control">
+                    {% endif %}
+                </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Goods receiving processing</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.storage %}
+                        <input type="number" id="goods_receiving_processing"  name="goods_receiving_processing" class="form-control" value= "{{data.goods_receiving_processing}}">
+                        {% else %}
+                        <input type="number" id="goods_receiving_processing"  name="goods_receiving_processing" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Goods receiving labelling</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.goods_receiving_labelling %}
+                        <input type="number" id="goods_receiving_labelling"  name="goods_receiving_labelling" class="form-control" value= "{{data.goods_receiving_labelling}}">
+                        {% else %}
+                        <input type="number" id="goods_receiving_labelling"  name="goods_receiving_labelling" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+             <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Goods receiving manual geo data</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.goods_receiving_labelling %}
+                        <input type="number" id="goods_receiving_manuel_geo_data"  name="goods_receiving_manuel_geo_data" class="form-control" value= "{{data.goods_receiving_manuel_geo_data}}">
+                        {% else %}
+                        <input type="number" id="goods_receiving_manuel_geo_data"  name="goods_receiving_manuel_geo_data" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Item picking</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.item_picking %}
+                        <input type="number" id="item_picking"  name="item_picking" class="form-control" value= "{{data.item_picking}}">
+                        {% else %}
+                        <input type="number" id="item_picking"  name="item_picking" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Item packaging</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.item_packaging %}
+                        <input type="number" id="item_packaging"  name="item_packaging" class="form-control" value= "{{data.item_packaging}}">
+                        {% else %}
+                        <input type="number" id="item_packaging"  name="item_packaging" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Palette packaging</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.palette_packaging %}
+                        <input type="number" id="palette_packaging"  name="palette_packaging" class="form-control" value= "{{data.palette_packaging}}">
+                        {% else %}
+                        <input type="number" id="palette_packaging"  name="palette_packaging" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Packaging material</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                        {% if data.packaging_material %}
+                        <input type="number" id="packaging_material"  name="packaging_material" class="form-control" value= "{{data.packaging_material}}">
+                        {% else %}
+                        <input type="number" id="packaging_material"  name="packaging_material" class="form-control">
+                        {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" ><a href="{{  url_for('main.admin_price', warehouse_id=data.id)  }}" style="text-decoration: none; color: inherit">save</a></button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+              
+{% endblock %}

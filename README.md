@@ -9,12 +9,14 @@ Authentication and login system with a smart search and query engine in the back
 19.05.2022 - Deployed postgresql database on heroku. Credentials will be given below. \
 19.05.2022 - Added auto locate features to get location of users(Location is printed on terminal, not on web app yet). \
 20.05.2022 - Added warehouse and warehouse services models. \
-20.05.2022 - Extended admin page, now can edit the warehouses and add them.
+20.05.2022 - Extended admin page, now can edit the warehouses and add them. \
+20.05.2022 - Added prices page in admin panel, can add and change prices of warehouses.
 
 ## Not working
 - Google and facebook authentication.
 - Forgot password.
 - Get location - works in the backend, not visible to the user.
+- When value is null, exception is thrown
 
 ## Technologies
 
