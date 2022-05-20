@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      
+        <div class="row justify-content-center">
+        
+            <div class="col-lg-8">
+            <form method="POST" action="/admin/{{data.id}}">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="md-form">
+                    <input type="text" id="name"  name="name" class="form-control" value= "{{data.name}}">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                    <input type="email" id="email" name = "email" class="form-control" value= "{{data.email}}">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                    <input type="text" id="phone" name="phone" class="form-control" value= "{{data.phone}}">
+                  </div>
+                </div>
+              </div>
+             <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                    <input type="text" id="address" name = "address" class="form-control" value= "{{data.address}}">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Available volume</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                    <input type="number" id="a_volume" name = "a_volume" class="form-control" value= "{{data.volume_available}}">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Total volume</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="md-form">
+                    <input type="number" id="t_volume" name = "t_volume" class="form-control" value= "{{data.volume_total}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                    <p class="mb-4"><span class="text-primary font-italic me-1">Services</span></p>
+                    <div class="form-check">
+                        {% if data.labelling %}
+                        <input class="form-check-input" type="checkbox" value="" id="labelling" name= "labelling" checked/>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" value="" id="labelling" name= "labelling"/>
+                        {% endif %}
+                        <label class="form-check-label" for="labelling">Labelling</label>
+                    </div>
+
+                    <div class="form-check">
+                        {% if data.manual_geo_data_entry %}
+                        <input class="form-check-input" type="checkbox" value="" id="manual_geo_data_entry" name= "manual_geo_data_entry" checked/>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" value="" id="manual_geo_data_entry" name= "manual_geo_data_entry"/>
+                        {% endif %}
+                        <label class="form-check-label" for="manual_geo_data_entry">Manual geo data entry</label>
+                    </div>                    
+                    <div class="form-check">
+                        {% if data.item_packaging %}
+                        <input class="form-check-input" type="checkbox" value="" id="item_packaging" name= "item_packaging" checked/>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" value="" id="item_packaging" name= "item_packaging"/>
+                        {% endif %}
+                        <label class="form-check-label" for="item_packaging">Item packaging</label>
+                    </div>   
+                    <div class="form-check">
+                        {% if data.palette_packaging %}
+                        <input class="form-check-input" type="checkbox" value="" id="palette_packaging" name= "palette_packaging" checked/>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" value="" id="palette_packaging" name= "palette_packaging"/>
+                        {% endif %}
+                        <label class="form-check-label" for="palette_packaging">Palette packaging</label>
+                    </div>   
+                </div>
+               </div>
+            </div>
+              
+            <div class="col-md-6">
+              <div class="card mb-4 mb-md-0">
+                <div class="card-body">
+                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                  </p>
+                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                  
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                  
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                  
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                  
+                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" ><a href="{{  url_for('main.admin_edit', warehouse_id=data.id)  }}" style="text-decoration: none; color: inherit">save</a></button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
+              
+{% endblock %}

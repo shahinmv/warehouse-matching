@@ -2,7 +2,7 @@ from cgitb import strong
 from db import db
 
 class WarehouseServices(db.Model):
-    __tablename__ = 'PilotApp_warehouseservice'
+    __tablename__ = 'PilotApp_warehouseservice_test'
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -15,7 +15,7 @@ class WarehouseServices(db.Model):
     palette_packaging = db.Column(db.Integer)
     packaging_material = db.Column(db.Integer)
 
-    warehouse_id = db.Column(db.Integer, db.ForeignKey('PilotApp_warehouse.id'))
+    warehouse_id = db.Column(db.Integer, db.ForeignKey('PilotApp_warehouse_test.id'))
 
     def __init__(self, storage, goods_receiving_processing, goods_receiving_labelling, goods_receiving_manuel_geo_data, item_picking, item_packaging, palette_packaging, packaging_material, warehouse_id):
         self.storage = storage

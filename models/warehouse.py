@@ -1,7 +1,7 @@
 from db import db
 
 class Warehouse(db.Model):
-    __tablename__ = 'PilotApp_warehouse'
+    __tablename__ = 'PilotApp_warehouse_test'
 
     id = db.Column(db.Integer, primary_key=True)
 
