@@ -139,7 +139,7 @@ def admin_price(warehouse_id):
 
 
 
-@main.route('/test', methods=['POST'])
+@main.route('/get_loc', methods=['POST'])
 def test():
     position = request.get_json()
     result = json.loads(position)

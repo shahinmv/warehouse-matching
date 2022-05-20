@@ -87,7 +87,7 @@
                     const dict_values = {latitude, longitude}
                     const loc = JSON.stringify(dict_values)
                     $.ajax({
-                        url: "/test",
+                        url: "/get_loc",
                         type:"POST",
                         contentType: "application/json",
                         data: JSON.stringify(loc)});
