@@ -27,6 +27,7 @@ Authentication and login system with a smart search and query engine in the back
 - PostgreSQL
 - Heroku
 - Google Maps API
+- Ajax
 
 ## Access to database
 **Host**:      ec2-52-48-159-67.eu-west-1.compute.amazonaws.com \
