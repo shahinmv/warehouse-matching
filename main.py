@@ -84,7 +84,9 @@ def admin_edit(warehouse_id):
 @login_required
 def warehouse_price(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).one()
-    return render_template('warehouse_price.html', data = data)
+    data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+
+    return render_template('warehouse_price.html', data = data, data_price = data_price)
 
 @main.route('/admin/prices/<int:warehouse_id>', methods = ['POST'])
 def admin_price(warehouse_id):
