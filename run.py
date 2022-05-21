@@ -29,6 +29,8 @@ login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
+db.init_app(app)
+
 @login_manager.user_loader
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
@@ -39,5 +41,4 @@ def create_tables():
     db.create_all()
 
 if __name__ == "__main__":
-    db.init_app(app)
     app.run(port=5500, debug = True)
