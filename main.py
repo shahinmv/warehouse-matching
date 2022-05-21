@@ -139,6 +139,18 @@ def admin_price(warehouse_id):
         db.session.commit()
         return redirect(url_for('main.admin'))
 
+@main.route('/admin/remove/<int:warehouse_id>')
+def remove(warehouse_id):
+    data = Warehouse.query.filter_by(id=warehouse_id).first()
+    data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+
+    if data_price:
+        db.session.delete(data_price)
+    
+    db.session.delete(data)
+    db.session.commit()
+
+    return redirect(url_for('main.admin'))
 
 
 @main.route('/get_loc', methods=['POST'])

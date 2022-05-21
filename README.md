@@ -10,7 +10,9 @@ Authentication and login system with a smart search and query engine in the back
 19.05.2022 - Added auto locate features to get location of users(Location is printed on terminal, not on web app yet). \
 20.05.2022 - Added warehouse and warehouse services models. \
 20.05.2022 - Extended admin page, now can edit the warehouses and add them. \
-20.05.2022 - Added prices page in admin panel, can add and change prices of warehouses.
+20.05.2022 - Added prices page in admin panel, can add and change prices of warehouses. \
+21.05.2022 - Fixed small bugs in price change page. \
+21.05.2022 - Added delete button, it deletes warehouse and prices associated.
 
 ## Not working
 - Google and facebook authentication.
