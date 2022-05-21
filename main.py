@@ -121,7 +121,7 @@ def admin_price(warehouse_id):
         check.storage = request.form.get("storage")
         check.item_picking = request.form.get("item_picking")
         check.packaging_material = request.form.get("packaging_material")
-        check.goods_processing = request.form.get("goods_receiving_processing")
+        check.goods_receiving_processing = request.form.get("goods_receiving_processing")
 
 
         if data.labelling:
