@@ -34,7 +34,7 @@ class WarehouseServices(db.Model):
         self.goods_receiving_manuel_geo_data = geodata
     
     def set_item(self, processing):
-        self.goods_receiving_processing = processing
+        self.item_packaging = processing
 
     def set_packaging(self, packaging):
-        self.item_packaging = packaging
+        self.palette_packaging = packaging
