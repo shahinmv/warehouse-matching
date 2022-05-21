@@ -14,17 +14,16 @@ class WarehouseServices(db.Model):
     item_packaging = db.Column(db.Integer)
     palette_packaging = db.Column(db.Integer)
     packaging_material = db.Column(db.Integer)
-
     warehouse_id = db.Column(db.Integer, db.ForeignKey('PilotApp_warehouse_test.id'))
 
-    def __init__(self, storage, item_picking, palette_packaging, packaging_material, warehouse_id):
+    def __init__(self, storage, item_picking, goods_receiving_processing, packaging_material, warehouse_id):
         """ self.goods_receiving_processing = goods_receiving_processing
         self.goods_receiving_labelling = goods_receiving_labelling
         self.goods_receiving_manuel_geo_data = goods_receiving_manuel_geo_data
         self.item_packaging = item_packaging """
         self.storage = storage
         self.item_picking = item_picking
-        self.palette_packaging = palette_packaging
+        self.goods_receiving_processing = goods_receiving_processing
         self.packaging_material = packaging_material
         self.warehouse_id = warehouse_id
 
@@ -34,7 +33,7 @@ class WarehouseServices(db.Model):
     def set_manualgeodata(self, geodata):
         self.goods_receiving_manuel_geo_data = geodata
     
-    def set_receivingprocessing(self, processing):
+    def set_item(self, processing):
         self.goods_receiving_processing = processing
 
     def set_packaging(self, packaging):

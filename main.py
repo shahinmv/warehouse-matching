@@ -93,12 +93,13 @@ def admin_price(warehouse_id):
     check = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
 
     if not check:
+        print("1")
         storage = request.form.get("storage")
         item_picking = request.form.get("item_picking")
-        palette_packaging = request.form.get("palette_packaging")
         packaging_material = request.form.get("packaging_material")
+        goods_processing = request.form.get("goods_receiving_processing")
 
-        new_wprice = WarehouseServices(storage, item_picking, palette_packaging, packaging_material, warehouse_id)
+        new_wprice = WarehouseServices(storage, item_picking, goods_processing, packaging_material, warehouse_id)
 
         if data.labelling:
             new_wprice.set_labelling(request.form.get("goods_receiving_labelling"))
@@ -107,7 +108,7 @@ def admin_price(warehouse_id):
             new_wprice.set_manualgeodata(request.form.get("goods_receiving_manuel_geo_data"))
 
         if data.item_packaging:
-            new_wprice.set_receivingprocessing(request.form.get("item_packaging"))
+            new_wprice.set_item(request.form.get("item_packaging"))
 
         if data.palette_packaging:
             new_wprice.set_packaging(request.form.get("palette_packaging"))
@@ -116,10 +117,12 @@ def admin_price(warehouse_id):
         db.session.commit()
         return redirect(url_for('main.admin'))
     else:
+        print("2")
         check.storage = request.form.get("storage")
         check.item_picking = request.form.get("item_picking")
-        check.palette_packaging = request.form.get("palette_packaging")
         check.packaging_material = request.form.get("packaging_material")
+        check.goods_processing = request.form.get("goods_receiving_processing")
+
 
         if data.labelling:
             check.goods_receiving_labelling = request.form.get("goods_receiving_labelling")
@@ -134,7 +137,6 @@ def admin_price(warehouse_id):
             check.palette_packaging = request.form.get("palette_packaging")
 
         db.session.commit()
-
         return redirect(url_for('main.admin'))
 
 

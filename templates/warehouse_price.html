@@ -16,11 +16,7 @@
                 </div>
                 <div class="col-sm-9">
                   <div class="md-form">
-                    {% if data.storage %}
-                    <input type="number" id="storage"  name="storage" class="form-control" value= "{{data.storage}}">
-                    {% else %}
-                    <input type="number" id="storage"  name="storage" class="form-control">
-                    {% endif %}
+                    <input type="number" id="storage"  name="storage" class="form-control" >
                 </div>
                 </div>
               </div>
@@ -31,101 +27,81 @@
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.storage %}
-                        <input type="number" id="goods_receiving_processing"  name="goods_receiving_processing" class="form-control" value= "{{data.goods_receiving_processing}}">
-                        {% else %}
                         <input type="number" id="goods_receiving_processing"  name="goods_receiving_processing" class="form-control">
-                        {% endif %}
                   </div>
                 </div>
               </div>
               <hr>
+              {% if data.labelling %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Goods receiving labelling</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.goods_receiving_labelling %}
-                        <input type="number" id="goods_receiving_labelling"  name="goods_receiving_labelling" class="form-control" value= "{{data.goods_receiving_labelling}}">
-                        {% else %}
-                        <input type="number" id="goods_receiving_labelling"  name="goods_receiving_labelling" class="form-control">
-                        {% endif %}
+                        <input type="number" id="goods_receiving_labelling"  name="goods_receiving_labelling" class="form-control" >
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-             <hr>
+                  <hr>
+                  {% endif %}
+                {% if data.manual_geo_data_entry %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Goods receiving manual geo data</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.goods_receiving_labelling %}
-                        <input type="number" id="goods_receiving_manuel_geo_data"  name="goods_receiving_manuel_geo_data" class="form-control" value= "{{data.goods_receiving_manuel_geo_data}}">
-                        {% else %}
                         <input type="number" id="goods_receiving_manuel_geo_data"  name="goods_receiving_manuel_geo_data" class="form-control">
-                        {% endif %}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr>
+                  <hr>
+                  {% endif %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Item picking</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.item_picking %}
-                        <input type="number" id="item_picking"  name="item_picking" class="form-control" value= "{{data.item_picking}}">
-                        {% else %}
                         <input type="number" id="item_picking"  name="item_picking" class="form-control">
-                        {% endif %}
                   </div>
                 </div>
               </div>
               <hr>
+              {% if data.item_packaging %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Item packaging</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.item_packaging %}
-                        <input type="number" id="item_packaging"  name="item_packaging" class="form-control" value= "{{data.item_packaging}}">
-                        {% else %}
                         <input type="number" id="item_packaging"  name="item_packaging" class="form-control">
-                        {% endif %}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr>
+                  <hr>
+                  {% endif %}
+                  {% if data.palette_packaging %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Palette packaging</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.palette_packaging %}
-                        <input type="number" id="palette_packaging"  name="palette_packaging" class="form-control" value= "{{data.palette_packaging}}">
-                        {% else %}
                         <input type="number" id="palette_packaging"  name="palette_packaging" class="form-control">
-                        {% endif %}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <hr>
+                  <hr>
+                  {% endif %}
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Packaging material</p>
                 </div>
                 <div class="col-sm-9">
                     <div class="md-form">
-                        {% if data.packaging_material %}
-                        <input type="number" id="packaging_material"  name="packaging_material" class="form-control" value= "{{data.packaging_material}}">
-                        {% else %}
                         <input type="number" id="packaging_material"  name="packaging_material" class="form-control">
-                        {% endif %}
                   </div>
                 </div>
               </div>
