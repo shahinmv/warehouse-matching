@@ -168,4 +168,4 @@ def test():
 
     print(r.json()["results"][1]["formatted_address"])
     
-    return render_template('index.html', value = "Test")
+    return render_template('index.html', value="Test")
