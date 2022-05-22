@@ -162,7 +162,9 @@ def test():
 
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
 
-    r = requests.get(url + str(result["latitude"]) + "," + str  (result["longitude"]) + "&key=" + API_KEY)
+    print(result)
+
+    r = requests.get(url + str(result["latitude"]) + "," + str(result["longitude"]) + "&key=" + API_KEY)
 
     print(r.json()["results"][1]["formatted_address"])
     

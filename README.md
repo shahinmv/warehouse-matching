@@ -39,7 +39,7 @@ Authentication and login system with a smart search and query engine in the back
 **Password**:  d2f6ddf9087969303f5eedf87b5e124060d4b25532ff0358f830b70ed9045b62 
 
 ## Access the website
-- [HERE](warehous e-thesis.herokuapp.com)
+- [HERE](warehouse-thesis.herokuapp.com)
 ## Usage
 
 ```python
