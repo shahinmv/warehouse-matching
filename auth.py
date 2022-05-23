@@ -1,10 +1,17 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
+from flask_mail import Mail, Message
 from models.user import User
+
 from db import db
 
+
 auth = Blueprint('auth', __name__)
+
+mail = Mail()
+
+
 
 @auth.route("/login")
 def login():
@@ -43,6 +50,7 @@ def signup_post():
         return redirect(url_for('auth.signup'))
 
     new_user = User(name, surname, email, password=generate_password_hash(password, method='sha256'))
+    new_user.setToken()
 
     db.session.add(new_user)
     print("Added user")
@@ -60,14 +68,48 @@ def forgot():
 @auth.route("/forgot", methods=['POST'])
 def forgot_post():
     email = request.form.get('loginName')
-    valid = User.query.filter_by(email=email).first()
-    if valid:
+    user = User.query.filter_by(email=email).first()
+    if user:
         flash('Sent reset code to the email')
-        valid.setToken()
+        user.setToken()
+
+        msg = Message(subject="Forgot password request", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[email])
+        msg.body = render_template("message/passwordreset.html", token = user.token, data = user)
+        mail.send(msg)
+
         db.session.commit()
         return redirect(url_for('auth.forgot'))
     else:
         flash('Account with that email does not exist')
+        return redirect(url_for('auth.forgot'))
+
+@auth.route("/reset/<string:token>")
+def reset(token):
+    return render_template('reset.html', token = token)
+@auth.route("/reset/<string:token>", methods=['POST', 'GET'])
+def reset_post(token):
+    user = User.query.filter_by(token=token).first()
+    print(url_for('auth.forgot'))
+    if user:
+        password = request.form.get("password")
+        passwordConfirm = request.form.get("passwordConfirm")
+        print(check_password_hash(user.password, password))
+
+        if password != passwordConfirm:
+            flash("Passwords do not match")
+            return redirect(url_for('auth.reset', token = token))
+        else:
+            if check_password_hash(user.password, password):
+                flash("You cant set your previous password")
+                return redirect(url_for('auth.reset', token = token))
+            else:
+                flash("Password changed successfully")
+                user.password = generate_password_hash(password, method='sha256')
+                user.setToken()
+                db.session.commit()
+                return redirect(url_for('auth.login'))
+    else:
+        flash("Token not valid")
         return redirect(url_for('auth.forgot'))
 
 @auth.route('/logout')
