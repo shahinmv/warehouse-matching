@@ -15,7 +15,7 @@ mail = Mail()
 
 @auth.route("/login")
 def login():
-    return render_template('login.html')
+    return render_template('authentication/login.html')
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -34,7 +34,7 @@ def login_post():
 
 @auth.route('/signup')
 def signup():
-    return render_template('signup.html')
+    return render_template('authentication/signup.html')
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
@@ -63,7 +63,7 @@ def signup_post():
 
 @auth.route("/forgot")
 def forgot():
-    return render_template('forgot.html')
+    return render_template('authentication/forgot.html')
 
 @auth.route("/forgot", methods=['POST'])
 def forgot_post():
@@ -85,7 +85,8 @@ def forgot_post():
 
 @auth.route("/reset/<string:token>")
 def reset(token):
-    return render_template('reset.html', token = token)
+    if not current_user.is_authenticated:
+        return render_template('authentication/reset.html', token = token)
 @auth.route("/reset/<string:token>", methods=['POST', 'GET'])
 def reset_post(token):
     user = User.query.filter_by(token=token).first()

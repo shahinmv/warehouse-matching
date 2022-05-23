@@ -26,7 +26,7 @@ def profile():
 def admin():
     if current_user.isAdmin:
         data = Warehouse.query.order_by(Warehouse.id.asc()).all()
-        return render_template('admin.html', data = data)
+        return render_template('admin/admin.html', data = data)
     else:
         return render_template('index.html')
 
@@ -59,7 +59,7 @@ def admin_post():
 @login_required
 def warehouse_view(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).one()
-    return render_template('warehouse_view.html', data = data)
+    return render_template('admin/warehouse_view.html', data = data)
 
 @main.route('/admin/details/<int:warehouse_id>', methods = ['POST'])
 def admin_edit(warehouse_id):
@@ -86,7 +86,7 @@ def warehouse_price(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).one()
     data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
 
-    return render_template('warehouse_price.html', data = data, data_price = data_price)
+    return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
 
 @main.route('/admin/prices/<int:warehouse_id>', methods = ['POST'])
 def admin_price(warehouse_id):
