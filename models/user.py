@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     """ location = db.Column(db.String(100)) """
     isAdmin = db.Column(db.Boolean, default=False)
+    token = db.Column(db.String(255))
 
     def __init__(self, name, surname, email, password):
         self.name = name

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w-150 p-4 d-flex justify-content-center pb-4">
+    <div style="width: 26rem;" >
+        <div class="tab-content">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-secondary" role="alert">
+                    {{ messages[0] }}.
+                </div>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/reset">
+        
+                <p class="text-center">Reset password</p>
+        
+                <div class="form-row mb-4">
+                <input type="email" id="loginName" name ="loginName" class="form-control"  placeholder="Email"/>
+                </div>
+        
+
+        
+                <button type="submit" class="btn btn-primary btn-block mb-4">Reset password</button>
+        
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
