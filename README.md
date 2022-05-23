@@ -12,7 +12,9 @@ Authentication and login system with a smart search and query engine in the back
 20.05.2022 - Extended admin page, now can edit the warehouses and add them. \
 20.05.2022 - Added prices page in admin panel, can add and change prices of warehouses. \
 21.05.2022 - Fixed small bugs in price change page. \
-21.05.2022 - Added delete button, it deletes warehouse and prices associated.
+21.05.2022 - Added delete button, it deletes warehouse and prices associated. \
+23.05.2022 - Fixed labels overlapping the input fields. \
+23.05.2022 - Fixed save button inside warehouse edit and prices page. 
 
 ## Not working
 - Google and facebook authentication.
