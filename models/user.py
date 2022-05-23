@@ -1,6 +1,7 @@
 from email.policy import default
 from db import db
 from flask_login import UserMixin
+import uuid
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -20,6 +21,9 @@ class User(UserMixin, db.Model):
         self.surname = surname
         self.email = email
         self.password = password
+
+    def setToken(self):
+        self.token = str(uuid.uuid4())
 
     """ def set_loc(self, loc):
         self.location = loc """

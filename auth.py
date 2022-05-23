@@ -53,20 +53,22 @@ def signup_post():
 
     return redirect(url_for('main.profile'))
 
-@auth.route("/reset")
-def reset():
-    return render_template('reset.html')
+@auth.route("/forgot")
+def forgot():
+    return render_template('forgot.html')
 
-@auth.route("/reset", methods=['POST'])
-def reset_post():
+@auth.route("/forgot", methods=['POST'])
+def forgot_post():
     email = request.form.get('loginName')
     valid = User.query.filter_by(email=email).first()
     if valid:
         flash('Sent reset code to the email')
-        return redirect(url_for('auth.reset'))
+        valid.setToken()
+        db.session.commit()
+        return redirect(url_for('auth.forgot'))
     else:
         flash('Account with that email does not exist')
-        return redirect(url_for('auth.reset'))
+        return redirect(url_for('auth.forgot'))
 
 @auth.route('/logout')
 @login_required
