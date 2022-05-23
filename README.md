@@ -14,7 +14,8 @@ Authentication and login system with a smart search and query engine in the back
 21.05.2022 - Fixed small bugs in price change page. \
 21.05.2022 - Added delete button, it deletes warehouse and prices associated. \
 23.05.2022 - Fixed labels overlapping the input fields. \
-23.05.2022 - Fixed buttons inside admin page, more responsive and returns in one click. 
+23.05.2022 - Fixed buttons inside admin page, more responsive and returns in one click.  \
+23.05.2022 - Added password reset with high security UUID4 token.
 
 ## Not working
 - Google and facebook authentication.
