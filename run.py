@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = 'shahin'
 #   LOCAL DATABASE
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5000/thesis-db'
 #   HEROKU HOSTED DATABASE
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yqquhofwbxigmm:d2f6ddf9087969303f5eedf87b5e124060d4b25532ff0358f830b70ed9045b62@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d22qmtgc4978dh'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fnqgcgvmozpmyl:f28265da2ca5f4fddc9de7e25e5cf8c7c06c95739d5d2ce3c4275d0fb3cc922f@ec2-54-76-43-89.eu-west-1.compute.amazonaws.com:5432/d22qmtgc4978dh'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.register_blueprint(main_blueprint)
 app.register_blueprint(auth_blueprint)
