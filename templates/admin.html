@@ -149,15 +149,15 @@
                 <p class="text-muted mb-0">{{warehouse.phone}}</p>
               </td>
             <td>
-              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                <a href="{{  url_for('main.warehouse_view', warehouse_id=warehouse.id)  }}">EDIT</a>
-              </button>
-              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                <a href="{{  url_for('main.warehouse_price', warehouse_id=warehouse.id)  }}">PRICES</a>
-              </button>
-              <button type="button" class="btn btn-link btn-sm btn-rounded">
-                <a href="{{  url_for('main.remove', warehouse_id=warehouse.id)  }}">DELETE</a>
-              </button>
+              <a href="{{  url_for('main.warehouse_view', warehouse_id=warehouse.id)  }}">
+                <button type="button" class="btn btn-link btn-sm btn-rounded">EDIT</button>
+              </a>
+              <a href="{{  url_for('main.warehouse_price', warehouse_id=warehouse.id)  }}">
+                <button type="button" class="btn btn-link btn-sm btn-rounded">PRICES</button>
+              </a>
+              <a href="{{  url_for('main.remove', warehouse_id=warehouse.id)  }}">
+                <button type="button" class="btn btn-link btn-sm btn-rounded">DELETE</button>
+              </a>
             </td>
           </tr>
           {% endfor %}
