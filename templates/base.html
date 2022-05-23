@@ -99,6 +99,17 @@
                 $('.alert').fadeOut('slow');
             }, 2000); // <-- time in milliseconds
         });
+
+        $('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
+            if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
+                console.log("active")
+                $(this).siblings('label').addClass('active');
+            }
+            else {
+                console.log("deactive")
+                $(this).siblings('label').removeClass('active');
+            }
+        });
     </script>
 </body>
 </html>
