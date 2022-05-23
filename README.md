@@ -19,9 +19,7 @@ Authentication and login system with a smart search and query engine in the back
 
 ## Not working
 - Google and facebook authentication.
-- Forgot password.
 - Get location - works in the backend, not visible to the user.
-- When value is null, exception is thrown
 
 ## Technologies
 
