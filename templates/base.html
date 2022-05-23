@@ -54,18 +54,18 @@
                 
                     <div class="d-flex align-items-center">
                         {% if not current_user.is_authenticated %}
-                        <button type="button" class="btn btn-link px-3 me-2">
-                            <a href="{{url_for('auth.login')}}" style="text-decoration: none; color: inherit">Login</a>
-                        </button>
-                        <button type="button" class="btn btn-primary me-3">
-                            <a href="{{url_for('auth.signup')}}" style="text-decoration: none; color: inherit">Sign up</a>
-                        </button>
+                        <a href="{{url_for('auth.login')}}" style="text-decoration: none; color: inherit">
+                            <button type="button" class="btn btn-link px-3 me-2">Login</button>
+                        </a>
+                        <a href="{{url_for('auth.signup')}}" style="text-decoration: none; color: inherit">
+                            <button type="button" class="btn btn-primary me-3">Sign up</button>
+                        </a>
                         {% endif %}
 
                         {% if current_user.is_authenticated %}
-                        <button type="button" class="btn btn-primary me-3">
-                            <a href="{{url_for('auth.logout')}}" style="text-decoration: none; color: inherit">Log out</a>
-                        </button>
+                        <a href="{{url_for('auth.logout')}}" style="text-decoration: none; color: inherit">
+                            <button type="button" class="btn btn-primary me-3">Log out</button>
+                        </a>
                         {% endif %}
                     </div>
             </div>
