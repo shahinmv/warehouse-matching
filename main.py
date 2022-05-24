@@ -154,6 +154,39 @@ def remove(warehouse_id):
 
     return redirect(url_for('main.admin'))
 
+@main.route('/dashboard')
+@login_required
+def dashboard():
+    if current_user.u_role == "owner":
+        data = Warehouse.query.filter_by(owner = current_user.id).all()
+        return render_template('dashboard.html', data = data)
+    else:
+        return render_template('index.html')
+
+@main.route('/dashboard', methods = ['POST'])
+def dashboard_post():
+    name = request.form.get('w_name')
+    available_storage = request.form.get('w_astorage')
+    total_storage = request.form.get('w_tstorage')
+
+    labelling = True if request.form.getlist('labelling') else False
+    manual_geo_data_entry = True if request.form.getlist('manual_geo_data_entry') else False
+    item_packaging = True if request.form.getlist('item_packaging') else False
+    palette_packaging = True if request.form.getlist('palette_packaging') else False
+
+    address = request.form.get('address')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+
+    new_warehouse = Warehouse(name, available_storage, total_storage, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone, current_user.id)
+
+    db.session.add(new_warehouse)
+    print("Added new warehouse")
+    db.session.commit()
+    print("Commited warehouse")
+    flash('Added new warehouse.') 
+
+    return redirect(url_for('main.dashboard'))
 
 @main.route('/get_loc', methods=['POST'])
 def test():

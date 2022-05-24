@@ -3,7 +3,7 @@
 {% block content %}
   <h1>This the homepage</h1>
   {% if current_user.is_authenticated%}
-  <p>Welcome {{current_user.name}}  {{current_user.surname}}</p>
+  <p>Welcome {{current_user.name}}  {{current_user.surname}}, they are {{current_user.u_role}}</p>
   <p>{{ value }}</p>
   {% endif %}
 {% endblock %}

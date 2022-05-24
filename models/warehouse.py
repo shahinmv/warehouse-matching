@@ -15,10 +15,11 @@ class Warehouse(db.Model):
     address = db.Column(db.String(200))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(20))
+    owner = db.Column(db.Integer)
 
     warehouse_services = db.relationship('WarehouseServices', lazy='dynamic')
 
-    def __init__(self, name, volume_available, volume_total, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone):
+    def __init__(self, name, volume_available, volume_total, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone, owner_id):
         self.name = name
         self.volume_available = volume_available
         self.volume_total = volume_total
@@ -29,3 +30,4 @@ class Warehouse(db.Model):
         self.address = address
         self.email = email
         self.phone = phone
+        self.owner = owner_id

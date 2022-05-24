@@ -36,9 +36,15 @@
                         <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                     </li>
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
-                    </li>
+                        {% if current_user.u_role == "merchant" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
+                        </li>
+                        {% elif current_user.u_role == "owner" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                        </li>
+                        {% endif %}
                     {% if current_user.isAdmin %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.admin') }}">Admin</a>

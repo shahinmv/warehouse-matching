@@ -13,14 +13,15 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     """ location = db.Column(db.String(100)) """
-    u_role = db.Column(db.String(15))
     isAdmin = db.Column(db.Boolean, default=False)
     token = db.Column(db.String(255))
+    u_role = db.Column(db.String(15))
 
-    def __init__(self, name, surname, email, password):
+    def __init__(self, name, surname, email, role, password):
         self.name = name
         self.surname = surname
         self.email = email
+        self.u_role = role
         self.password = password
 
     def setToken(self):
