@@ -33,11 +33,11 @@ Authentication and login system with a smart search and query engine in the back
 - Ajax
 
 ## Access to database
-**Host**:      ec2-52-48-159-67.eu-west-1.compute.amazonaws.com \
-**Database**:  d22qmtgc4978dh \
+**Host**:      ec2-54-76-43-89.eu-west-1.compute.amazonaws.com \
+**Database**:  d1s5qe2312f8bg \
 **Post**:      5432 \
-**Username**:  yqquhofwbxigmm \
-**Password**:  d2f6ddf9087969303f5eedf87b5e124060d4b25532ff0358f830b70ed9045b62 
+**Username**:  fnqgcgvmozpmyl \
+**Password**:  f28265da2ca5f4fddc9de7e25e5cf8c7c06c95739d5d2ce3c4275d0fb3cc922f 
 
 ## Access the website
 - [HERE](warehouse-thesis.herokuapp.com)
