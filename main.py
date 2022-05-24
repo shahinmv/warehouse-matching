@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from cProfile import label
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import requests
 from db import db
