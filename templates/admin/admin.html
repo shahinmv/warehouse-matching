@@ -95,6 +95,11 @@
          
                   <p class="fw-bold mb-1">{{warehouse.name}}</p>
                   <p class="text-muted mb-0">{{warehouse.email}}</p>
+                  {% for user in users %}
+                  {% if user.id == warehouse.owner %}
+                  <p class="text-muted mb-0">{{user.name}} {{user.surname}}</p>
+                  {% endif%}
+                  {% endfor %}
               
             </td>
             <td>
