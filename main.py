@@ -17,41 +17,6 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-
-""" @main.route('/admin')
-@login_required
-def admin():
-    if current_user.isAdmin:
-        data = Warehouse.query.order_by(Warehouse.id.asc()).all()
-        return render_template('admin/admin.html', data = data)
-    else:
-        return render_template('index.html')
-
-@main.route('/admin', methods = ['POST'])
-def admin_post():
-    name = request.form.get('w_name')
-    available_storage = request.form.get('w_astorage')
-    total_storage = request.form.get('w_tstorage')
-
-    labelling = True if request.form.getlist('labelling') else False
-    manual_geo_data_entry = True if request.form.getlist('manual_geo_data_entry') else False
-    item_packaging = True if request.form.getlist('item_packaging') else False
-    palette_packaging = True if request.form.getlist('palette_packaging') else False
-
-    address = request.form.get('address')
-    email = request.form.get('email')
-    phone = request.form.get('phone')
-
-    new_warehouse = Warehouse(name, available_storage, total_storage, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone)
-
-    db.session.add(new_warehouse)
-    print("Added new warehouse")
-    db.session.commit()
-    print("Commited warehouse")
-    flash('Added new warehouse.') 
-
-    return redirect(url_for('main.admin')) """
-
 @main.route('/dashboard/remove/<int:warehouse_id>')
 def remove(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).first()
@@ -213,6 +178,10 @@ def warehouse_price_Edit(warehouse_id):
         return redirect(url_for('main.admin'))
     elif current_user.u_role == "owner":
         return redirect(url_for('main.dashboard'))
+
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @main.route('/software')
 def sofware():

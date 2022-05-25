@@ -13,8 +13,18 @@
       <div class="row d-flex align-items-center justify-content-center h-100">
         {% if current_user.is_authenticated %}
         {% if current_user.u_role == "merchant" %}
-
-        <div class="col-md-5 col-lg-3 col-xl-3 bg-image rounded hover-shadow" style="padding-left: 0px; padding-right: 0px;">
+        <div class="col-md-3 col-lg-3 col-xl-3 bg-image rounded hover-shadow" style="padding-left: 0px; padding-right: 0px;">
+          <a href="{{url_for('search.main')}}">
+          <img src="/static/warehouse.jpg"
+          class="img-fluid rounded" alt="Store image">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <p class="text-white mb-0">Search for warehouses</p>
+            </div>
+          </div>
+        </a>
+        </div>
+        <div class="col-md-5 col-lg-3 col-xl-3 offset-xl-1 bg-image rounded hover-shadow" style="padding-left: 0px; padding-right: 0px;">
           <a href=" https://www.alibaba.com/" target="_blank">
           <img src="/static/supplier.png"
             class="img-fluid rounded hover-shadow" alt="Supplier image">
@@ -39,7 +49,7 @@
 
         {% elif current_user.u_role == "owner" %}
         <div class="col-md-5 col-lg-3 col-xl-3 bg-image rounded hover-shadow" style="padding-left: 0px; padding-right: 0px;">
-          <a href="{{url_for('main.sofware')}}" target="_blank">
+          <a href="{{url_for(main.sofware)}}" target="_blank">
           <img src="/static/w_software.png"
             class="img-fluid rounded hover-shadow" alt="Supplier image">
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
