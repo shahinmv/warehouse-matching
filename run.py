@@ -1,16 +1,14 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_mail import Mail
 from auth import auth as auth_blueprint
 from main import main as main_blueprint
+from handlers import errors as errors_blueprint
 from models.user import User
 from models.warehouse import Warehouse
 from models.warehouse_service import  WarehouseServices
-from flask_mail import Mail
 
 from db import db
-
-from main import main as main_blueprint
-from auth import auth as auth_blueprint
 
 app = Flask(__name__)
 mail = Mail()
@@ -24,6 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://fnqgcgvmozpmyl:f28265da2ca
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.register_blueprint(main_blueprint)
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(errors_blueprint)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
 import requests
 from db import db
 from flask_login import login_required, current_user
@@ -80,7 +80,7 @@ def dashboard():
         data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
         return render_template('dashboard.html', data = data)
     else:
-        return render_template('index.html')
+        abort(403) 
 
 @main.route('/dashboard', methods = ['POST'])
 def dashboard_post():
@@ -115,9 +115,9 @@ def warehouse_view(warehouse_id):
             data = Warehouse.query.filter_by(id=warehouse_id).one()
             return render_template('admin/warehouse_view.html', data = data)
         else:
-            return redirect(url_for('main.index'))
+            abort(403)
     else:
-        return redirect(url_for('main.index'))
+        abort(403)
 
 @main.route('/dashboard/details/<int:warehouse_id>', methods = ['POST'])
 def warehouse_edit(warehouse_id):
@@ -157,11 +157,15 @@ def warehouse_edit(warehouse_id):
 @main.route('/dashboard/prices/<int:warehouse_id>')
 @login_required
 def warehouse_price(warehouse_id):
-    data = Warehouse.query.filter_by(id=warehouse_id).one()
-    data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
-
-    return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
-
+    if current_user.is_authenticated:
+        if current_user.u_role == "owner" or current_user.isAdmin:
+            data = Warehouse.query.filter_by(id=warehouse_id).one()
+            data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+            return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
+        else:
+            abort(403)
+    else:
+        abort(403)
 @main.route('/dashboard/prices/<int:warehouse_id>', methods = ['POST'])
 def warehouse_price_Edit(warehouse_id):
     print("test")
