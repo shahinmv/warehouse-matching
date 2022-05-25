@@ -20,11 +20,17 @@ Authentication and login system with a smart search and query engine in the back
 24.05.2022 - Dashboard for warehouse owner, adding their warehouse and editing it. \
 24.05.2022 - Removed admin route, now uses joint route /dashboard, but admin has more options. \
 24.05.2022 - Bug fix, now turning of a feature removes the price associated to it.  \
-25.05.2022 - Added error handling. Gives proper errors incase of misuse or server issues. 
+25.05.2022 - Added error handling. Gives proper errors incase of misuse or server issues. \
+25.05.2022 - Added static images, links to the home page for each type of users.  
 
 ## Not working
 - Google and facebook authentication.
 - Get location - works in the backend, not visible to the user.
+
+## To do
+- Organize the files into folders.
+- Create search page.
+- Test google apis distance matrix.
 
 ## Technologies
 
