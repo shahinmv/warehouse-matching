@@ -19,7 +19,8 @@ Authentication and login system with a smart search and query engine in the back
 24.05.2022 - Added merchant and warehouse owner ranks, can choose in registration page. \
 24.05.2022 - Dashboard for warehouse owner, adding their warehouse and editing it. \
 24.05.2022 - Removed admin route, now uses joint route /dashboard, but admin has more options. \
-24.05.2022 - Bug fix, now turning of a feature removes the price associated to it. 
+24.05.2022 - Bug fix, now turning of a feature removes the price associated to it.  \
+25.05.2022 - Added error handling. Gives proper errors incase of misuse or server issues. 
 
 ## Not working
 - Google and facebook authentication.
