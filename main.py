@@ -17,10 +17,6 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html')
 
 """ @main.route('/admin')
 @login_required
@@ -217,6 +213,10 @@ def warehouse_price_Edit(warehouse_id):
         return redirect(url_for('main.admin'))
     elif current_user.u_role == "owner":
         return redirect(url_for('main.dashboard'))
+
+@main.route('/software')
+def sofware():
+    return render_template('software/software.html')
 
 @main.route('/get_loc', methods=['POST'])
 def test():
