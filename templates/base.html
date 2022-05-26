@@ -41,11 +41,10 @@
                             <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
                         </li>
                         {% endif %}
-                        {% if current_user.u_role == "merchant"%}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
                         </li>
-                        {% endif %}
+                        
                     
                     <!-- <button type="button" id = "location-button" class="btn btn-link px-3 me-2" onclick="getLocation();">
                         Get Location
@@ -116,6 +115,16 @@
                 $('.alert').fadeOut('slow');
             }, 2000); // <-- time in milliseconds
         });
+
+        function usernameRestriction(input){
+            var regex = /[^a-z_0-9]/gi;
+            input.value = input.value.replace(regex, "")
+        }
+
+        function nameRestriction(input){
+            var regex = /[^a-z]/gi;
+            input.value = input.value.replace(regex, "")
+        }
 
 
     </script>

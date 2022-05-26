@@ -16,12 +16,14 @@ class User(UserMixin, db.Model):
     isAdmin = db.Column(db.Boolean, default=False)
     token = db.Column(db.String(255))
     u_role = db.Column(db.String(15))
+    username = db.Column(db.String(20))
 
-    def __init__(self, name, surname, email, role, password):
+    def __init__(self, name, surname, email, role, username, password):
         self.name = name
         self.surname = surname
         self.email = email
         self.u_role = role
+        self.username = username
         self.password = password
 
     def setToken(self):

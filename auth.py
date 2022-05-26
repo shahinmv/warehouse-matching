@@ -19,18 +19,27 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    email = request.form.get('loginName')
+    login = request.form.get('loginName')
     password = request.form.get('loginPassword')
-    remember = True if request.form.get('loginCheck') else False
+    
+    if "@" in login:
+        email = login
+        user = User.query.filter_by(email=email).first()
+    else:
+        username = login
+        user = User.query.filter_by(username=username).first()
 
-    user = User.query.filter_by(email=email).first()
+    remember = True if request.form.get('loginCheck') else False
 
     if not user or not check_password_hash(user.password, password):
         flash('Email address or password is incorrect')
         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page """
     
     login_user(user, remember=remember)
-    return redirect(url_for('main.index'))
+    if current_user.isAdmin:
+        return redirect(url_for('main.dashboard'))
+    else:
+        return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
 def signup():
@@ -42,6 +51,7 @@ def signup_post():
     name = request.form.get('registerName')
     surname = request.form.get('registerSurname')
     role = request.form.get('inlineRadioOptions')
+    username = request.form.get('registerUsername')
     password = request.form.get('registerPassword')
 
     user = User.query.filter_by(email=email).first()
@@ -50,7 +60,7 @@ def signup_post():
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(name, surname, email, role, password=generate_password_hash(password, method='sha256'))
+    new_user = User(name, surname, email, role, username, password=generate_password_hash(password, method='sha256'))
     new_user.setToken()
 
     db.session.add(new_user)
@@ -60,7 +70,10 @@ def signup_post():
 
     login_user(new_user)
 
-    return redirect(url_for('main.index'))
+    if role == "owner":
+        return redirect(url_for('main.add_warehouse'))
+    else:
+        return redirect(url_for('main.index'))
 
 @auth.route("/forgot")
 def forgot():

@@ -41,13 +41,17 @@
                   
         
                 <div class="form-row mb-4">
-                    <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Name" required/>
+                    <input type="text" id="registerName" name="registerName" class="form-control" placeholder="Name" onkeyup="nameRestriction(this)" required/>
                 </div>
 
                 <div class="form-row mb-4">
-                    <input type="text" id="registerSurname" name="registerSurname" class="form-control" placeholder="Surname" required/>
+                    <input type="text" id="registerSurname" name="registerSurname" class="form-control" placeholder="Surname" onkeyup="nameRestriction(this)" required/>
                 </div>
-        
+                
+                <div class="form-row mb-4">
+                    <input type="text" id="registerUsername" name="registerUsername" class="form-control" placeholder="Username" onkeyup="usernameRestriction(this)" required/>
+                </div>
+
                 <div class="form-row mb-4">
                     <input type="email" id="registerEmail" name="registerEmail" class="form-control" placeholder="Email" required/>
                 </div>

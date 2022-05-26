@@ -43,44 +43,21 @@ def dashboard():
     else:
         abort(403) 
 
-@main.route('/dashboard', methods = ['POST'])
-def dashboard_post():
-    name = request.form.get('w_name')
-    available_storage = request.form.get('w_astorage')
-    total_storage = request.form.get('w_tstorage')
-
-    labelling = True if request.form.getlist('labelling') else False
-    manual_geo_data_entry = True if request.form.getlist('manual_geo_data_entry') else False
-    item_packaging = True if request.form.getlist('item_packaging') else False
-    palette_packaging = True if request.form.getlist('palette_packaging') else False
-
-    address = request.form.get('address')
-    email = request.form.get('email')
-    phone = request.form.get('phone')
-
-    new_warehouse = Warehouse(name, available_storage, total_storage, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone, current_user.id)
-
-    db.session.add(new_warehouse)
-    print("Added new warehouse")
-    db.session.commit()
-    print("Commited warehouse")
-    flash('Added new warehouse.') 
-
-    return redirect(url_for('main.dashboard'))
-
-@main.route('/dashboard/details/<int:warehouse_id>')
+@main.route('/edit/details/<int:warehouse_id>')
 @login_required
 def warehouse_view(warehouse_id):
     if current_user.is_authenticated:
         if current_user.u_role == "owner" or current_user.isAdmin:
             data = Warehouse.query.filter_by(id=warehouse_id).one()
-            return render_template('admin/warehouse_view.html', data = data)
+            if data.owner == current_user.id:
+                return render_template('admin/warehouse_view.html', data = data)
+            else: abort(403)
         else:
             abort(403)
     else:
         abort(403)
 
-@main.route('/dashboard/details/<int:warehouse_id>', methods = ['POST'])
+@main.route('/edit/details/<int:warehouse_id>', methods = ['POST'])
 def warehouse_edit(warehouse_id):
     data = Warehouse.query.filter_by(id=warehouse_id).first()
     w_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
@@ -97,17 +74,18 @@ def warehouse_edit(warehouse_id):
     data.item_packaging = True if request.form.getlist('item_packaging') else False
     data.palette_packaging = True if request.form.getlist('palette_packaging') else False
 
-    if w_price.goods_receiving_labelling and not data.labelling:
-        w_price.goods_receiving_labelling = None
+    if w_price:
+        if w_price.goods_receiving_labelling and not data.labelling:
+            w_price.goods_receiving_labelling = None
 
-    if w_price.goods_receiving_manuel_geo_data and not data.manual_geo_data_entry:
-        w_price.goods_receiving_manuel_geo_data = None
+        if w_price.goods_receiving_manuel_geo_data and not data.manual_geo_data_entry:
+            w_price.goods_receiving_manuel_geo_data = None
 
-    if w_price.item_packaging and not data.item_packaging:
-        w_price.item_packaging = None
+        if w_price.item_packaging and not data.item_packaging:
+            w_price.item_packaging = None
 
-    if w_price.palette_packaging and not data.palette_packaging:
-        w_price.palette_packaging = None
+        if w_price.palette_packaging and not data.palette_packaging:
+            w_price.palette_packaging = None
 
     db.session.commit()
     if current_user.isAdmin:
@@ -115,19 +93,22 @@ def warehouse_edit(warehouse_id):
     elif current_user.u_role == "owner":
         return redirect(url_for('main.dashboard'))
 
-@main.route('/dashboard/prices/<int:warehouse_id>')
+@main.route('/prices/<int:warehouse_id>')
 @login_required
 def warehouse_price(warehouse_id):
     if current_user.is_authenticated:
         if current_user.u_role == "owner" or current_user.isAdmin:
             data = Warehouse.query.filter_by(id=warehouse_id).one()
-            data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
-            return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
+            if data.owner == current_user.id:
+                data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+                return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
+            else:
+                abort(403)
         else:
             abort(403)
     else:
         abort(403)
-@main.route('/dashboard/prices/<int:warehouse_id>', methods = ['POST'])
+@main.route('/prices/<int:warehouse_id>', methods = ['POST'])
 def warehouse_price_Edit(warehouse_id):
     print("test")
     data = Warehouse.query.filter_by(id=warehouse_id).one()
@@ -180,11 +161,49 @@ def warehouse_price_Edit(warehouse_id):
         return redirect(url_for('main.dashboard'))
 
 @main.route('/profile')
+@login_required
 def profile():
-    return render_template('profile.html')
+    if current_user.u_role == "owner":
+        data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
+        return render_template('profile.html', data = data)
+    else:
+        return render_template('profile.html')
+
+@main.route('/add-warehouse')
+@login_required
+def add_warehouse():
+    if current_user.u_role == "merchant":
+        abort(403)
+    elif current_user.u_role == "owner":
+        return render_template('authentication/add_warehouse.html')
+
+@main.route('/add-warehouse', methods = ['POST'])
+def add_warehousePost():
+    name = request.form.get('w_name')
+    available_storage = request.form.get('w_astorage')
+    total_storage = request.form.get('w_tstorage')
+
+    labelling = True if request.form.getlist('labelling') else False
+    manual_geo_data_entry = True if request.form.getlist('manual_geo_data_entry') else False
+    item_packaging = True if request.form.getlist('item_packaging') else False
+    palette_packaging = True if request.form.getlist('palette_packaging') else False
+
+    address = request.form.get('address')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+
+    new_warehouse = Warehouse(name, available_storage, total_storage, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone, current_user.id)
+
+    db.session.add(new_warehouse)
+    print("Added new warehouse")
+    db.session.commit()
+    print("Commited warehouse")
+
+    return redirect(url_for('main.warehouse_price',warehouse_id = new_warehouse.id))
+
 
 @main.route('/software')
-def sofware():
+def software():
     return render_template('software/software.html')
 
 @main.route('/get_loc', methods=['POST'])
