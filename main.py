@@ -15,7 +15,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title = "Home")
 
 @main.route('/dashboard/remove/<int:warehouse_id>')
 def remove(warehouse_id):
@@ -36,10 +36,10 @@ def dashboard():
     if current_user.isAdmin:
         data = Warehouse.query.order_by(Warehouse.id.asc()).all()
         users = User.query.all()
-        return render_template('admin/admin.html', data = data, users = users)
+        return render_template('dashboard.html', data = data, users = users, title = "Dashboard")
     elif current_user.u_role == "owner":
         data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
-        return render_template('dashboard.html', data = data)
+        return render_template('dashboard.html', data = data, title = "Dashboard")
     else:
         abort(403) 
 
@@ -50,7 +50,7 @@ def warehouse_view(warehouse_id):
         if current_user.u_role == "owner" or current_user.isAdmin:
             data = Warehouse.query.filter_by(id=warehouse_id).one()
             if data.owner == current_user.id:
-                return render_template('admin/warehouse_view.html', data = data)
+                return render_template('admin/warehouse_view.html', data = data, title = "Edit")
             else: abort(403)
         else:
             abort(403)
@@ -101,7 +101,7 @@ def warehouse_price(warehouse_id):
             data = Warehouse.query.filter_by(id=warehouse_id).one()
             if data.owner == current_user.id:
                 data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
-                return render_template('admin/warehouse_price.html', data = data, data_price = data_price)
+                return render_template('admin/warehouse_price.html', data = data, data_price = data_price, title = "Prices")
             else:
                 abort(403)
         else:
@@ -165,9 +165,9 @@ def warehouse_price_Edit(warehouse_id):
 def profile():
     if current_user.u_role == "owner":
         data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
-        return render_template('profile.html', data = data)
+        return render_template('profile.html', data = data, title = "Profile")
     else:
-        return render_template('profile.html')
+        return render_template('profile.html', title = "Profile")
 
 @main.route('/add-warehouse')
 @login_required
@@ -175,7 +175,7 @@ def add_warehouse():
     if current_user.u_role == "merchant":
         abort(403)
     elif current_user.u_role == "owner":
-        return render_template('authentication/add_warehouse.html')
+        return render_template('authentication/add_warehouse.html', title = "Add warehouse")
 
 @main.route('/add-warehouse', methods = ['POST'])
 def add_warehousePost():
@@ -204,7 +204,7 @@ def add_warehousePost():
 
 @main.route('/software')
 def software():
-    return render_template('software/software.html')
+    return render_template('software/software.html', title = "Under construction")
 
 @main.route('/get_loc', methods=['POST'])
 def test():

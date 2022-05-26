@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <!-- <h1>This the homepage</h1>
-  {% if current_user.is_authenticated%}
-  <p>Welcome {{current_user.name}}  {{current_user.surname}}, they are {{current_user.u_role}}</p>
-  <p>{{ value }}</p>
-  {% endif %} -->
 
   <section class="vh-100">
     <div class="container py-5 h-70">
@@ -70,7 +65,6 @@
           </div>
         </a>
         </div>
-
         {% elif current_user.u_role == "owner" %}
         <div class="col-md-5 col-lg-3 col-xl-3 bg-image rounded hover-shadow" style="padding-left: 0px; padding-right: 0px;">
           <a href="{{url_for('main.software')}}" target="_blank">
