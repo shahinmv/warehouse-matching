@@ -23,7 +23,9 @@ Authentication and login system with a smart search and query engine in the back
 25.05.2022 - Added error handling. Gives proper errors incase of misuse or server issues. \
 25.05.2022 - Added static images, links to the home page for each type of users.  \
 26.05.2022 - New profile page, displaying name, surname and email of the user. \
-26.05.2022 - Added username column to user db, can now login with email and username. 
+26.05.2022 - Added username column to user db, can now login with email and username. \
+26.05.2022 - Title changes according to the URL. Small design modifications in dashboard. \ 
+26.05.2022 - Fixed JS error that blocked me from using dropdown menu for the last few days.
 
 ## Not working
 - Google and facebook authentication.
