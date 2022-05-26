@@ -206,6 +206,16 @@ def add_warehousePost():
 def software():
     return render_template('software/software.html', title = "Under construction")
 
+@main.route('/search')
+def search():
+    data = Warehouse.query.order_by(Warehouse.id.asc()).all()
+    return render_template('search/search.html', title = "Search", data = data)
+
+@main.route('/search/details/<int:warehouse_id>')
+def details(warehouse_id):
+    data = Warehouse.query.filter_by(id = warehouse_id).first()
+    return render_template('search/details.html', data = data, title = "Warehouse details")
+
 @main.route('/get_loc', methods=['POST'])
 def test():
     position = request.get_json()

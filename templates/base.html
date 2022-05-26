@@ -38,12 +38,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
                         </li>
-                        {% endif %}
+
+                        {% elif current_user.u_role == "merchant" %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
+                            <a class="nav-link" href="{{ url_for('main.search') }}">Search</a>
                         </li>
-                        
-                    
+                        {% endif%}
+
                     <!-- <button type="button" id = "location-button" class="btn btn-link px-3 me-2" onclick="getLocation();">
                         Get Location
                     </button> -->
@@ -140,6 +141,10 @@
         function nameRestriction(input){
             var regex = /[^a-z]/gi;
             input.value = input.value.replace(regex, "")
+        }
+
+        function showHideRow(row) {
+            $("#" + row).toggle();
         }
 
 
