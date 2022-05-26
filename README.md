@@ -34,7 +34,6 @@ Authentication and login system with a smart search and query engine in the back
 
 ## To do
 - Organize the files into folders.
-- Create search page.
 - Test google apis distance matrix.
 
 ## Technologies
