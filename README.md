@@ -21,7 +21,9 @@ Authentication and login system with a smart search and query engine in the back
 24.05.2022 - Removed admin route, now uses joint route /dashboard, but admin has more options. \
 24.05.2022 - Bug fix, now turning of a feature removes the price associated to it.  \
 25.05.2022 - Added error handling. Gives proper errors incase of misuse or server issues. \
-25.05.2022 - Added static images, links to the home page for each type of users.  
+25.05.2022 - Added static images, links to the home page for each type of users.  \
+26.05.2022 - New profile page, displaying name, surname and email of the user. \
+26.05.2022 - Added username column to user db, can now login with email and username. 
 
 ## Not working
 - Google and facebook authentication.
