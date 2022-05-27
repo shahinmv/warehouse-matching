@@ -2,19 +2,49 @@
 
 {% block content %}
 <section style="background-color: #eee;">
-    <div class="container py-5">
+    <div class="container py-3">
       <div class="row">
-        <div class="col-lg-4">
+          <div class="col-lg-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-secondary" role="alert">
+                {{ messages[0] }}.
+            </div>
+            {% endif %}
+            {% endwith %}
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              <img src="/static/merchant_profile.png" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">John Smith</h5>
-              <p class="text-muted mb-1">Full Stack Developer</p>
-              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+              <h5 class="my-3">{{data.name}}</h5>
+              <p class="text-muted mb-1">{{data.address}}</p>
+              <p class="text-muted mb-4">{{data.email}}</p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Check availability</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <form method="POST" action="/details/{{data.id}}/request">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Request for information</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row ">
+                                <input type="number" id="neededStorage" name ="neededStorage" class="form-control"  placeholder="Approximate needed storage"/>
+                            </div>
+                        </div>
+                        <p class="mb-1" style="font-size: .77rem;">You will receive an email from us once your request gets processed.</p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">REQUEST</button>
+                        </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
@@ -53,7 +83,7 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Johnatan Smith</p>
+                  <p class="text-muted mb-0">{{owner.name}}  {{owner.surname}}</p>
                 </div>
               </div>
               <hr>
@@ -62,7 +92,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
+                  <p class="text-muted mb-0">{{data.email}}</p>
                 </div>
               </div>
               <hr>
@@ -71,16 +101,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">(098) 765-4321</p>
+                  <p class="text-muted mb-0">{{data.phone}}</p>
                 </div>
               </div>
               <hr>
@@ -89,7 +110,7 @@
                   <p class="mb-0">Address</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                  <p class="text-muted mb-0">{{data.address}}</p>
                 </div>
               </div>
             </div>
@@ -98,7 +119,7 @@
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                  <p class="mb-4"><span class="text-primary font-italic me-1">Prices</span>
                   </p>
                   <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                   <div class="progress rounded" style="height: 5px;">
@@ -131,8 +152,7 @@
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                  </p>
+                  <p class="mb-4"><span class="text-primary font-italic me-1">Some other info</span>                   </p>
                   <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                   <div class="progress rounded" style="height: 5px;">
                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"

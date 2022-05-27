@@ -1,0 +1,11 @@
+Dear {{current_user.name}} {{current_user.surname}}
+ 
+After processing your request, we regret to inform that, {{unav.name}} does not have the storage you needed.</h4>
+But we still have many more warehouses listed with available storage you need. They are listed below:
+{% for warehouse in data %}
+{{warehouse.name}} - http://warehouse-thesis.herokuapp.com/search/details/{{warehouse.id}}
+{% endfor %}
+
+
+Best,
+Fulfil-it team.

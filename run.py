@@ -5,6 +5,7 @@ from auth import auth as auth_blueprint
 from main import main as main_blueprint
 from handlers import errors as errors_blueprint
 from search import search as search_blueprint
+from processes import processes as processes_blueprint
 from models.user import User
 from models.warehouse import Warehouse
 from models.warehouse_service import  WarehouseServices
@@ -25,6 +26,7 @@ app.register_blueprint(main_blueprint)
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(errors_blueprint)
 app.register_blueprint(search_blueprint)
+app.register_blueprint(processes_blueprint)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
