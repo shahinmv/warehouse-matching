@@ -26,7 +26,8 @@ Authentication and login system with a smart search and query engine in the back
 26.05.2022 - Added username column to user db, can now login with email and username. \
 26.05.2022 - Title changes according to the URL. Small design modifications in dashboard. \
 26.05.2022 - Fixed JS error that blocked me from using JS functions for the last few days. \
-26.05.2022 - New search tab, which displays warehouses to merchant, details page coming soon.
+26.05.2022 - New search tab, which displays warehouses to merchant, details page coming soon. \
+27.05.2022 - Photo upload logic is written, not accessible yet, need to get better DB server. 
 
 ## Not working
 - Google and facebook authentication.
