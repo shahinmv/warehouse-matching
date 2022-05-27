@@ -28,6 +28,8 @@ Authentication and login system with a smart search and query engine in the back
 26.05.2022 - Fixed JS error that blocked me from using JS functions for the last few days. \
 26.05.2022 - New search tab, which displays warehouses to merchant, details page coming soon. \
 27.05.2022 - Photo upload logic is written, not accessible yet, need to get better DB server. 
+27.05.2022 - search/details page displays warehouse info, and button to check availability. \
+27.05.2022 - Small algorithm to check if warehouse has available storage, send email containing information. 
 
 ## Not working
 - Google and facebook authentication.
