@@ -73,7 +73,7 @@ def signup_post():
     if role == "owner":
         return redirect(url_for('main.add_warehouse'))
     else:
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.profile'))
 
 @auth.route("/forgot")
 def forgot():

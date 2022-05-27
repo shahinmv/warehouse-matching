@@ -44,6 +44,11 @@
                             <a class="nav-link" href="{{ url_for('main.search') }}">Search</a>
                         </li>
                         {% endif%}
+                        {% if current_user.u_role == "merchant" or current_user.u_role == "owner" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
+                        </li>
+                        {% endif %}
 
                     <!-- <button type="button" id = "location-button" class="btn btn-link px-3 me-2" onclick="getLocation();">
                         Get Location
@@ -59,12 +64,12 @@
                 transform: translate(-50%, -50%);" id="title">
                 {% if current_user.is_authenticated %}
                     {% if current_user.isAdmin %}
-                    <button type="radio" class="nav-item">ADMIN</button>
+                    <button type="radio" class="nav-item">Administration</button>
                     {% elif current_user.u_role == "owner" %}
                     <!-- <button type="button" class="btn btn-primary me-3" style="background-color: purple;">OWNER</button> -->
-                    <button type="radio" class="nav-item">OWNER</button>
+                    <button type="radio" class="nav-item">Warehouse Owner Account</button>
                     {% elif current_user.u_role == "merchant" %}
-                    <button type="radio" class="nav-item">MERCHANT</button>
+                    <button type="radio" class="nav-item">Merchant Account</button>
                     {% endif %}
                 {% endif %}
                 </div>
@@ -142,11 +147,6 @@
             var regex = /[^a-z]/gi;
             input.value = input.value.replace(regex, "")
         }
-
-        function showHideRow(row) {
-            $("#" + row).toggle();
-        }
-
 
     </script>
 </body>

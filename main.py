@@ -155,10 +155,7 @@ def warehouse_price_Edit(warehouse_id):
             check.palette_packaging = request.form.get("palette_packaging")
 
     db.session.commit()
-    if current_user.isAdmin:
-        return redirect(url_for('main.admin'))
-    elif current_user.u_role == "owner":
-        return redirect(url_for('main.dashboard'))
+    return redirect(url_for('main.dashboard'))
 
 @main.route('/profile')
 @login_required
