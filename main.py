@@ -2,12 +2,14 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 import requests
 from db import db
 from flask_login import login_required, current_user
-from models.warehouse import Warehouse
 from models.user import User
+from werkzeug.utils import secure_filename
 
 import json
 
+from models.warehouse import Warehouse
 from models.warehouse_service import WarehouseServices
+from models.img import Img
 
 API_KEY = "AIzaSyDPYgtducg288JoPwZ3utMYUbKt_nxtAu4"
 
@@ -176,6 +178,11 @@ def add_warehouse():
 
 @main.route('/add-warehouse', methods = ['POST'])
 def add_warehousePost():
+    """ pic = request.files['pic']
+    filename = secure_filename(pic.filename)
+    mimetype = pic.mimetype
+    img = Img(img=pic.read(), name=filename, mimetype=mimetype, warehouse=current_user.id) """
+
     name = request.form.get('w_name')
     available_storage = request.form.get('w_astorage')
     total_storage = request.form.get('w_tstorage')
@@ -191,6 +198,7 @@ def add_warehousePost():
 
     new_warehouse = Warehouse(name, available_storage, total_storage, labelling, manual_geo_data_entry, item_packaging, palette_packaging, address, email, phone, current_user.id)
 
+    """ db.session.add(img) """
     db.session.add(new_warehouse)
     print("Added new warehouse")
     db.session.commit()
