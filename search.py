@@ -38,7 +38,8 @@ def filter():
     print(words)
     if name:
         for n in words:
-            filters.append(Warehouse.name.match(n))
+            search = "%{}%".format(n)
+            filters.append(Warehouse.name.ilike(search))
     if n_storage:
         filters.append(Warehouse.volume_available >= n_storage)
     #FILTERING BASED ON SERVICES
