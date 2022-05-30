@@ -48,16 +48,15 @@ def dashboard():
 @main.route('/edit/details/<int:warehouse_id>')
 @login_required
 def warehouse_view(warehouse_id):
-    if current_user.is_authenticated:
-        if current_user.u_role == "owner" or current_user.isAdmin:
-            data = Warehouse.query.filter_by(id=warehouse_id).one()
-            if data.owner == current_user.id:
-                return render_template('admin/warehouse_view.html', data = data, title = "Edit")
-            else: abort(403)
-        else:
+    if current_user.u_role == "owner" or current_user.isAdmin:
+        data = Warehouse.query.filter_by(id=warehouse_id).one()
+        if data.owner == current_user.id or current_user.isAdmin:
+            return render_template('admin/warehouse_view.html', data = data, title = "Edit")
+        else: 
             abort(403)
     else:
         abort(403)
+ 
 
 @main.route('/edit/details/<int:warehouse_id>', methods = ['POST'])
 def warehouse_edit(warehouse_id):
@@ -98,18 +97,16 @@ def warehouse_edit(warehouse_id):
 @main.route('/prices/<int:warehouse_id>')
 @login_required
 def warehouse_price(warehouse_id):
-    if current_user.is_authenticated:
-        if current_user.u_role == "owner" or current_user.isAdmin:
-            data = Warehouse.query.filter_by(id=warehouse_id).one()
-            if data.owner == current_user.id:
-                data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
-                return render_template('admin/warehouse_price.html', data = data, data_price = data_price, title = "Prices")
-            else:
-                abort(403)
+    if current_user.u_role == "owner" or current_user.isAdmin:
+        data = Warehouse.query.filter_by(id=warehouse_id).one()
+        if data.owner == current_user.id or current_user.isAdmin:
+            data_price = WarehouseServices.query.filter_by(warehouse_id=warehouse_id).first()
+            return render_template('admin/warehouse_price.html', data = data, data_price = data_price, title = "Prices")
         else:
             abort(403)
     else:
         abort(403)
+
 @main.route('/prices/<int:warehouse_id>', methods = ['POST'])
 def warehouse_price_Edit(warehouse_id):
     print("test")

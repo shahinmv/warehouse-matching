@@ -33,11 +33,14 @@ def filter():
     palette_packaging = True if request.form.get('palette_packaging') else False
     
     filters = []
-    
+    words = name.split()
+
+    print(words)
     if name:
-        filters.append(Warehouse.name.match(name))
+        for n in words:
+            filters.append(Warehouse.name.match(n))
     if n_storage:
-        filters.append(Warehouse.volume_available > n_storage)
+        filters.append(Warehouse.volume_available >= n_storage)
     #FILTERING BASED ON SERVICES
     if labelling:
         print("labelling")
