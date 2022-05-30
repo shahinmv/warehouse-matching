@@ -3,6 +3,62 @@
 {% block content %}
 
     <div class="container py-5">
+        <form action="/search/filter" method="POST">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-8 col-xl-8">
+                <div class="input-group">
+                        <input type="search" class="form-control " placeholder="Name" name="name" aria-label="Name" aria-describedby="search-addon" />
+                        <input type="number" class="form-control " placeholder="Needed storage" name="n_storage" aria-label="Needed storage" aria-describedby="search-addon" />
+                            <button
+                              class="form-control"
+                              type="button"
+                              id="dropdownMenuButton"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                               <p id="p1">Price</p>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><input id="min_p" name = "min_p" type="number" class="m-2" placeholder="Min. price" onkeyup="updatePrice(this)"></li>
+                              <li><input id="max_p" name = "max_p" type="number" class="m-2" placeholder="Max. price" onkeyup="updatePrice(this)"></li>
+                            </ul>
+
+                            <button
+                              class="form-control"
+                              type="button"
+                              id="dropdownMenuButton2"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                               <p id="p1">Services</p>
+                            </button>
+                            
+                                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton2">
+                                  <li>
+                                    <input class="form-check-input" type="checkbox" value="labelling" id="labelling" name="labelling" />
+                                    <label class="form-check-label" for="labelling">Labelling</label>
+                                  </li>
+                                  <li>
+                                    <input class="form-check-input" type="checkbox" value="manual_geo_data_entry" id="manual_geo_data_entry" name="manual_geo_data_entry" />
+                                    <label class="form-check-label" for="manual_geo_data_entry">Manual geo data entry</label>
+                                  </li>
+                                  <li>
+                                    <input class="form-check-input" type="checkbox" value="item_packaging" id="item_packaging" name = "item_packaging" />
+                                    <label class="form-check-label" for="item_packaging">Item packaging</label>
+                                  </li>
+                                  <li>
+                                    <input class="form-check-input" type="checkbox" value="palette_packaging" id="palette_packaging" name = "palette_packaging" />
+                                    <label class="form-check-label" for="palette_packaging">Palette packaging</label>
+                                  </li>
+                                  
+                                </ul>
+                              
+                       
+                        <button type="submit" class="btn btn-outline-primary">search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
         {% for warehouse in data %}
       <div class="row justify-content-center mb-3">
         <div class="col-md-12 col-xl-10">
@@ -11,7 +67,7 @@
               <div class="row">
                 <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                   <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                    <img style="max-height: 130px; width:auto;"src="static/merchant_profile.png"
+                    <img style="max-height: 130px; width:auto;"src="/static/merchant_profile.png"
                       class="w-100" />
                     <a href="#!">
                       <div class="hover-overlay">
@@ -86,7 +142,7 @@
                   </div>
                   <!-- <h6 class="text-success">Free shipping</h6> -->
                   <div class="d-flex flex-column mt-4">
-                    <a href="{{url_for('main.details', warehouse_id = warehouse.id)}}"><button class="btn btn-primary btn-sm" type="button">Details</button></a>
+                    <a href="{{url_for('search.details', warehouse_id = warehouse.id)}}"><button class="btn btn-primary btn-sm" type="button">Details</button></a>
     
                   </div>
                 </div>

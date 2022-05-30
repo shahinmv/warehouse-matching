@@ -12,7 +12,7 @@ from models.warehouse_service import  WarehouseServices
 
 from db import db
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 mail = Mail()
 
 app.config['SECRET_KEY'] = 'shahin'

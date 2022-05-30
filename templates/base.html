@@ -41,7 +41,7 @@
 
                         {% elif current_user.u_role == "merchant" %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('main.search') }}">Search</a>
+                            <a class="nav-link" href="{{ url_for('search.main') }}">Search</a>
                         </li>
                         {% endif%}
                         {% if current_user.u_role == "merchant" or current_user.u_role == "owner" %}
@@ -147,6 +147,25 @@
             var regex = /[^a-z]/gi;
             input.value = input.value.replace(regex, "")
         }
+        function updatePrice(input){
+            const element = document.getElementById("p1");
+            const min_p = document.getElementById("min_p").value;
+            const max_p = document.getElementById("max_p").value;
+
+            if(min_p){
+                var min = "€" + min_p + ">" 
+                element.innerHTML = min 
+            }
+            if(max_p){
+                var max = "<" + "€" + max_p
+                if (min_p)
+                    element.innerHTML =  min + " , " + max
+                else
+                element.innerHTML = max
+            }
+        }
+ 
+</script>
 
     </script>
 </body>
