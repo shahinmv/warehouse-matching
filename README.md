@@ -29,7 +29,9 @@ Authentication and login system with a smart search and query engine in the back
 26.05.2022 - New search tab, which displays warehouses to merchant, details page coming soon. \
 27.05.2022 - Photo upload logic is written, not accessible yet, need to get better DB server. \
 27.05.2022 - search/details page displays warehouse info, and button to check availability. \
-27.05.2022 - Small algorithm to check if warehouse has available storage, send email containing information. 
+27.05.2022 - Small algorithm to check if warehouse has available storage, send email containing information. \
+30.05.2022 - Disabled the process to send email containing information if warehouse has available storage. \
+30.05.2022 - Search tab inside search page, can query through warehouses using name, storage, services and prices.  
 
 ## Not working
 - Google and facebook authentication.
