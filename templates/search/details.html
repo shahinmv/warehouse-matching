@@ -2,9 +2,9 @@
 
 {% block content %}
 <section style="background-color: #eee;">
-    <div class="container py-3">
+    <div class="container py-5">  
       <div class="row">
-          <div class="col-lg-4">
+        <div class="col-lg-4">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="alert alert-secondary" role="alert">
@@ -44,8 +44,6 @@
                     </form>
                     </div> -->
                     </div>
-                </div>
-              </div>
             </div>
           </div>
           <div class="card mb-4 mb-lg-0">
@@ -78,48 +76,48 @@
         <div class="col-lg-8">
           <div class="card mb-4">
             <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{owner.name}}  {{owner.surname}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{data.email}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Phone</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{data.phone}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Address</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{data.address}}</p>
-                </div>
-              </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{owner.name}}  {{owner.surname}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{data.email}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Phone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{data.phone}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Address</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{data.address}}</p>
+                    </div>
+                  </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">Prices</span>
+                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
                   </p>
                   <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                   <div class="progress rounded" style="height: 5px;">
@@ -152,7 +150,8 @@
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">Some other info</span>                   </p>
+                  <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
+                  </p>
                   <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                   <div class="progress rounded" style="height: 5px;">
                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
@@ -186,4 +185,11 @@
       </div>
     </div>
   </section>
+
+
+
+
+
+
+
 {% endblock %}
