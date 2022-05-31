@@ -38,11 +38,9 @@ Authentication and login system with a smart search and query engine in the back
 
 ## Not working
 - Google and facebook authentication.
-- Get location - works in the backend, not visible to the user.
 
 ## To do
-- Organize the files into folders.
-- Test google apis distance matrix.
+- Organize the directory.
 
 ## Technologies
 
