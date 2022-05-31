@@ -5,8 +5,11 @@
     <div class="container py-5">
         <form action="/search/filter" method="POST">
         <div class="row justify-content-center mb-3">
-            <div class="col-md-10 col-xl-9">
+            <div class="col-md-12 col-xl-9">
                 <div class="input-group">
+                        {% if request.endpoint == "search.filter" %}
+                          <a class="btn-outline-primary btn text-center" href="{{url_for('search.main')}}">reset</a>
+                        {% endif %}
                         <input type="search" class="form-control " placeholder="Name" name="name" aria-label="Name" aria-describedby="search-addon" />
                         <input type="number" class="form-control " placeholder="Needed storage" name="n_storage" aria-label="Needed storage" aria-describedby="search-addon" />
                             <button
@@ -78,113 +81,21 @@
                                 </button> -->
                         <button type="submit" class="btn btn-outline-primary">search</button>
                     </div>
+                   
+                    
                 </div>
             </div>
         </form>
-        {% for warehouse in data %}
-      <div class="row justify-content-center mb-3">
-        <div class="col-md-12 col-xl-10">
-          <div class="card shadow-0 border rounded-3">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                    <img style="max-height: 130px; width:auto;"src="/static/merchant_profile.png"
-                      class="w-100" />
-                    <a href="#!">
-                      <div class="hover-overlay">
-                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-6">
-                  <h5>{{warehouse.name}}</h5>
-                  <div class="d-flex flex-row">
-                    <div class="text-danger mb-1 me-2">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <span>310</span>
-                  </div>
-                  <div class="mt-1 mb-0 text-muted small">
-                    {% if warehouse.labelling %}
-                        <td>
-                        <span class="badge badge-success rounded-pill d-inline">Labelling</span>
-                    </td>
-                    {% else %}
-                    <td>
-                        <span class="badge badge-danger rounded-pill d-inline">Labelling</span>
-                    </td>
-                    {% endif %}
-                    <span class="text-primary"> • </span>
-                    {% if warehouse.manual_geo_data_entry %}
-                        <td>
-                        <span class="badge badge-success rounded-pill d-inline">Manual geo data entry</span>
-                    </td>
-                    {% else %}
-                    <td>
-                        <span class="badge badge-danger rounded-pill d-inline">Manual geo data entry</span>
-                    </td>
-                    {% endif %}
-    
-                  </div>
-                  <div class="mb-2 text-muted small">
-                    {% if warehouse.item_packaging %}
-                        <td>
-                        <span class="badge badge-success rounded-pill d-inline">Item packaging</span>
-                    </td>
-                    {% else %}
-                    <td>
-                        <span class="badge badge-danger rounded-pill d-inline">Item packaging</span>
-                    </td>
-                    {% endif %}
-                    <span class="text-primary"> • </span>
-                    {% if warehouse.palette_packaging %}
-                        <td>
-                        <span class="badge badge-success rounded-pill d-inline">Palette packaging</span>
-                    </td>
-                    {% else %}
-                    <td>
-                        <span class="badge badge-danger rounded-pill d-inline">Palette packaging</span>
-                    </td>
-                    {% endif %}
-
-                  </div>
-                  <p class="text-truncate mb-4 mb-md-0">
-                    {{warehouse.address}}
-                  </p>
-                  <div class="mb-2 text-muted small">
-                    {% for td in time %}
-                      {% if td[0] == warehouse.id %}
-                        <span class="text-primary">{{td[1]}} km away</span>
-                          
-                        <span class="text-primary"> • </span>
-      
-                        <span class="text-primary">{{td[2]}} drive</span>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                  <div class="d-flex flex-row align-items-center mb-1">
-                    <h4 class="mb-1 me-1">$$$</h4>
-                    <span class="text-danger"><s>$$$</s></span>
-                  </div>
-                  <!-- <h6 class="text-success">Free shipping</h6> -->
-                  <div class="d-flex flex-column mt-4">
-                    <a href="{{url_for('search.details', warehouse_id = warehouse.id)}}"><button class="btn btn-primary btn-sm" type="button">Details</button></a>
-    
-                  </div>
-                </div>
-              </div>
-            </div>
+        {% if request.endpoint == "search.main" %}
+        <div style="display: flex;align-items: center;justify-content: center;">
+          <h1>Input your filters</h1>
         </div>
-    </div>
-</div>
-{% endfor %}
-    </div>
+        {% endif %}
+        
+
+
+        {% block search%}
+        {% endblock %}
+        
 
 {% endblock %}

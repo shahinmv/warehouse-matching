@@ -82,9 +82,9 @@ def filter():
                 if x.id == warehouses[0]:
                     new_results.append(x)
 
-        return render_template('search/search.html', title = 'Search', data = new_results, time = warehouse_d_t)
+        return render_template('search/filtersearch.html', title = 'Search', data = new_results, time = warehouse_d_t)
     else:
-        return render_template('search/search.html', title = 'Search', data = results)
+        return render_template('search/filtersearch.html', title = 'Search', data = results)
 
 def getAddress(loc):
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
