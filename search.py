@@ -67,6 +67,7 @@ def filter():
     if locActive:
         dicLoc = removeCharacters(locActive, '{":lattitudelongitude}')
         loc = getAddress(dicLoc)
+        print(loc)
         warehouse_d_t = []
 
         for warehouses in results:
