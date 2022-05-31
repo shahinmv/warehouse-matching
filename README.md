@@ -33,7 +33,8 @@ Authentication and login system with a smart search and query engine in the back
 30.05.2022 - Disabled the process to send email containing information if warehouse has available storage. \
 30.05.2022 - Search tab inside search page, can query through warehouses using name, storage, services and prices. \
 31.05.2022 - Receive merchants address, calculate distance matrix and return back distance and time to destination. \
-31.05.2022 - Sort the warehouses with the temporary array created, which includes time and distance matrix.
+31.05.2022 - Sort the warehouses with the temporary array created, which includes time and distance matrix. \ 
+31.05.2022 - Added autocomplete for address field. Now shows similar addresses while user types along. 
 
 ## Not working
 - Google and facebook authentication.
