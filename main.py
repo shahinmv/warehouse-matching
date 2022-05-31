@@ -5,13 +5,10 @@ from flask_login import login_required, current_user
 from models.user import User
 from werkzeug.utils import secure_filename
 
-import json
-
 from models.warehouse import Warehouse
 from models.warehouse_service import WarehouseServices
 from models.img import Img
 
-API_KEY = "AIzaSyDPYgtducg288JoPwZ3utMYUbKt_nxtAu4"
 
 main = Blueprint('main', __name__)
 
@@ -208,17 +205,4 @@ def add_warehousePost():
 def software():
     return render_template('software/software.html', title = "Under construction")
 
-@main.route('/get_loc', methods=['POST'])
-def test():
-    position = request.get_json()
-    result = json.loads(position)
 
-    url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
-
-    print(result)
-
-    r = requests.get(url + str(result["latitude"]) + "," + str(result["longitude"]) + "&key=" + API_KEY)
-
-    print(r.json()["results"][1]["formatted_address"])
-    
-    return render_template('index.html', value="Test")

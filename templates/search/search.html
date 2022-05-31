@@ -52,6 +52,25 @@
                                   </li>
                                   
                                 </ul>
+
+                                <button
+                              class="form-control"
+                              type="button"
+                              id="dropdownMenuButton3"
+                              data-mdb-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                               <p id="p1">More filters</p>
+                            </button>
+                            
+                                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton3">
+                                  <li>
+                                    <input class="form-check-input" onclick="getLocation();" type="checkbox" value="" id="closest_loc" name="closest_loc" />
+                                    <label class="form-check-label"  for="closest_loc">Closest available</label>
+                                  </li>
+                                 
+                                  
+                                </ul>
                               
                        
                                 <!-- <button type="button" id = "location-button" class="btn btn-link px-3 me-2" onclick="getLocation();">
@@ -137,6 +156,17 @@
                   <p class="text-truncate mb-4 mb-md-0">
                     {{warehouse.address}}
                   </p>
+                  <div class="mb-2 text-muted small">
+                    {% for td in time %}
+                      {% if td[0] == warehouse.id %}
+                        <span class="text-primary">{{td[1]}} km away</span>
+                          
+                        <span class="text-primary"> • </span>
+      
+                        <span class="text-primary">{{td[2]}} drive</span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                   <div class="d-flex flex-row align-items-center mb-1">

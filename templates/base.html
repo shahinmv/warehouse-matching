@@ -121,11 +121,20 @@
 
                     const dict_values = {latitude, longitude}
                     const loc = JSON.stringify(dict_values);
-                    $.ajax({
-                        url: "/get_loc",
+                    console.log(loc)
+                    /* $.ajax({
+                        url: "/search/filter",
                         type:"POST",
                         contentType: "application/json",
-                        data: JSON.stringify(loc)});
+                        data: JSON.stringify(loc)}); */
+                    var checkBox = document.getElementById("closest_loc");
+
+                    if (checkBox.checked == true){
+                        checkBox.value = loc;
+                    }
+                    else{
+                        checkBox = null;
+                    }
                 })
         } 
 
