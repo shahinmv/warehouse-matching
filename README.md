@@ -34,7 +34,9 @@ Authentication and login system with a smart search and query engine in the back
 30.05.2022 - Search tab inside search page, can query through warehouses using name, storage, services and prices. \
 31.05.2022 - Receive merchants address, calculate distance matrix and return back distance and time to destination. \
 31.05.2022 - Sort the warehouses with the temporary array created, which includes time and distance matrix. \ 
-31.05.2022 - Added autocomplete for address field. Now shows similar addresses while user types along. 
+31.05.2022 - Added autocomplete for address field. Now shows similar addresses while user types along. \
+01.06.2022 - Optimized the models by adding association proxy for easily accessing the one to one relationship services table prices. No need to loop everytime, looking if owner ID matches the owner. 
+01.06.2022 - Added filtering by 4 services prices provided by the warehouses.
 
 ## Not working
 - Google and facebook authentication.
