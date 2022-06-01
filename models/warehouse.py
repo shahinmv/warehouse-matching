@@ -1,4 +1,6 @@
 from db import db
+from sqlalchemy.ext.associationproxy import association_proxy
+
 
 class Warehouse(db.Model):
     __tablename__ = 'PilotApp_warehouse_test'
@@ -31,3 +33,8 @@ class Warehouse(db.Model):
         self.email = email
         self.phone = phone
         self.owner = owner_id
+    
+    labelling_price = association_proxy('warehouse_services', 'goods_receiving_labelling')
+    manualgeo_price = association_proxy('warehouse_services', 'goods_receiving_manuel_geo_data')
+    itempackaging_price = association_proxy('warehouse_services', 'item_packaging')
+    palettepackaging_price = association_proxy('warehouse_services', 'palette_packaging')

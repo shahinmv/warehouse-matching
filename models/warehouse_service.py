@@ -14,6 +14,7 @@ class WarehouseServices(db.Model):
     item_packaging = db.Column(db.Integer)
     palette_packaging = db.Column(db.Integer)
     packaging_material = db.Column(db.Integer)
+    
     warehouse_id = db.Column(db.Integer, db.ForeignKey('PilotApp_warehouse_test.id'))
 
     def __init__(self, storage, item_picking, goods_receiving_processing, packaging_material, warehouse_id):

@@ -113,6 +113,54 @@
         {% endblock %}
     </div>
     <script>
+        window.onload = function() {
+            document.getElementById('labelling_filter').style.display = 'none';
+            document.getElementById('manualgeo_filter').style.display = 'none';
+            document.getElementById('itempackaging_filter').style.display = 'none';
+            document.getElementById('palettepackaging_filter').style.display = 'none';
+        }
+        function showServicesPrices(){
+            var labellingCheck = document.getElementById("labelling");
+            var manualgeoCheck = document.getElementById("manual_geo_data_entry");
+            var itempackagingCheck = document.getElementById("item_packaging");
+            var palettepackagingCheck = document.getElementById("palette_packaging");
+
+            if(labellingCheck.checked == true){
+                document.getElementById('labelling_filter').style.display = 'block';
+            }
+            else if(labellingCheck.checked == false){
+                document.getElementById('labelling_filter').style.display = 'none';
+                document.getElementById('labelling_price_min').value = null;
+                document.getElementById('labelling_price_max').value = null;
+            }
+
+            if(manualgeoCheck.checked == true){
+                document.getElementById('manualgeo_filter').style.display = 'block';
+            }
+            else if(manualgeoCheck.checked == false){
+                document.getElementById('manualgeo_filter').style.display = 'none';
+                document.getElementById('manualgeo_price_min').value = null;
+                document.getElementById('manualgeo_price_max').value = null;
+            }
+
+            if(itempackagingCheck.checked == true){
+                document.getElementById('itempackaging_filter').style.display = 'block';
+            }
+            else if(manualgeoCheck.checked == false){
+                document.getElementById('itempackaging_filter').style.display = 'none';
+                document.getElementById('itempackaging_price_min').value = null;
+                document.getElementById('itempackaging_price_max').value = null;
+            }
+
+            if(palettepackagingCheck.checked == true){
+                document.getElementById('palettepackaging_filter').style.display = 'block';
+            }
+            else if(palettepackagingCheck.checked == false){
+                document.getElementById('palettepackaging_filter').style.display = 'none';
+                document.getElementById('palettepackaging_price_min').value = null;
+                document.getElementById('palettepackaging_price_max').value = null;
+            }
+        }
         function getLocation(){
             if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(function(position){
