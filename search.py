@@ -53,7 +53,7 @@ def filter():
     
     locActive = request.form.get('closest_loc')
     
-
+    services = []
     filters = []
     words = name.split()
 
@@ -64,36 +64,60 @@ def filter():
     if n_storage:
         filters.append(Warehouse.volume_available >= n_storage)
     #FILTERING BASED ON SERVICES
-    if labelling:
-        print("labelling")
+    """ if labelling:
         filters.append(Warehouse.labelling.is_(True))
+        services.append(Warehouse.labelling.is_(True))
         if labelling_min:
             filters.append(Warehouse.labelling_price >= labelling_min)
         if labelling_max:
             filters.append(Warehouse.labelling_price <= labelling_max)
+        
     if manual_geo_data_entry:
-        print("manual_geo_data_entry")  
         filters.append(Warehouse.manual_geo_data_entry.is_(True))
         if manualgeo_min:
             filters.append(Warehouse.manualgeo_price >= manualgeo_min)
         if manualgeo_max:
             filters.append(Warehouse.manualgeo_price <= manualgeo_max)
+
     if item_packaging:
-        print("item_packaging")
         filters.append(Warehouse.item_packaging.is_(True))
         if itempackaging_min:
             filters.append(Warehouse.itempackaging_price >= itempackaging_min)
         if itempackaging_max:
             filters.append(Warehouse.itempackaging_price <= itempackaging_max)
+
     if palette_packaging:
         print("palette_packaging")
         filters.append(Warehouse.palette_packaging.is_(True))
         if palettepackaging_min:
             filters.append(Warehouse.palettepackaging_price >= palettepackaging_min)
         if palettepackaging_max:
-            filters.append(Warehouse.palettepackaging_price <= palettepackaging_max)
+            filters.append(Warehouse.palettepackaging_price <= palettepackaging_max) """
+    temp_l = []
+    if labelling:
+        temp_l.append(Warehouse.labelling.is_(True))
+        if labelling_min:
+            temp_l.append(Warehouse.labelling_price >= labelling_min)
+        if labelling_max:
+            temp_l.append(Warehouse.labelling_price <= labelling_max)
+        labelling_query = Warehouse.query.filter(db.and_(*temp_l)).all()
+        print(labelling_query)
+
+    temp_m = []
+    if manual_geo_data_entry:
+        temp_m.append(Warehouse.manual_geo_data_entry.is_(True))
+        if labelling_min:
+            temp_m.append(Warehouse.manualgeo_price >= manualgeo_min)
+        if labelling_max:
+            temp_m.append(Warehouse.manualgeo_price <= manualgeo_max)
+        manualgeo_query = Warehouse.query.filter(db.and_(*temp_m)).all()
+        print(manualgeo_query)
+
+    z = list(set(labelling_query) - set(manualgeo_query))
+    print(z)
 
     results = Warehouse.query.filter(db.and_(*filters)).all()
+    print(results)
 
     if locActive:
         dicLoc = removeCharacters(locActive, '{":lattitudelongitude}')

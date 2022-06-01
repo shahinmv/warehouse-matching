@@ -10,8 +10,8 @@
                         {% if request.endpoint == "search.filter" %}
                           <a class="btn-outline-primary btn text-center" href="{{url_for('search.main')}}">reset</a>
                         {% endif %}
-                        <input type="search" class="form-control " placeholder="Name" name="name" aria-label="Name" aria-describedby="search-addon" />
-                        <input type="number" class="form-control " placeholder="Needed storage" name="n_storage" aria-label="Needed storage" aria-describedby="search-addon" />
+                        <input type="search" class="form-control " placeholder="Name" name="name" aria-label="Name" aria-describedby="search-addon" autocomplete="on"/>
+                        <input type="number" class="form-control " placeholder="Needed storage" name="n_storage" aria-label="Needed storage" aria-describedby="search-addon"/>
                             <button
                               class="form-control"
                               type="button"
