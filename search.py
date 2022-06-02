@@ -50,6 +50,9 @@ def filter():
     palettepackaging_min = request.form.get('palettepackaging_price_min') 
     palettepackaging_max = request.form.get('palettepackaging_price_max')
 
+    if labelling_min:
+        print("true")
+
     
     locActive = request.form.get('closest_loc')
     
@@ -71,14 +74,24 @@ def filter():
     manualgeo_difference = []
     itempackaging_difference = []
     palettepackaging_difference = []
+    filter_prices = {}
+    filter_prices_bool = {}
 
     if labelling:
         temp_l = filters.copy()
         temp_l.append(Warehouse.labelling.is_(True))
         if labelling_min:
             temp_l.append(Warehouse.labelling_price >= labelling_min)
+            filter_prices['labelling_min'] = int(labelling_min)
+            filter_prices_bool['labelling_min'] = True
+        else:
+            filter_prices_bool['labelling_min'] = False
         if labelling_max:
             temp_l.append(Warehouse.labelling_price <= labelling_max)
+            filter_prices['labelling_max'] = int(labelling_max)
+            filter_prices_bool['labelling_max'] = True
+        else:
+            filter_prices_bool['labelling_max'] = False
         labelling_query = Warehouse.query.filter(db.and_(*temp_l)).all()
 
         results = results + labelling_query
@@ -86,10 +99,18 @@ def filter():
     if manual_geo_data_entry:
         temp_m = filters.copy()
         temp_m.append(Warehouse.manual_geo_data_entry.is_(True))
-        if labelling_min:
+        if manualgeo_min:
             temp_m.append(Warehouse.manualgeo_price >= manualgeo_min)
-        if labelling_max:
+            filter_prices['manualgeo_min'] = int(manualgeo_min)
+            filter_prices_bool['manualgeo_min'] = True
+        else:
+            filter_prices_bool['manualgeo_min'] = False
+        if manualgeo_max:
             temp_m.append(Warehouse.manualgeo_price <= manualgeo_max)
+            filter_prices['manualgeo_max'] = int(manualgeo_max)
+            filter_prices_bool['manualgeo_max'] = True
+        else:
+            filter_prices_bool['manualgeo_max'] = False
         manualgeo_query = Warehouse.query.filter(db.and_(*temp_m)).all()
         if labelling and labelling_difference:
             manualgeo_difference = list(set(manualgeo_query) - set(labelling_difference))
@@ -101,10 +122,18 @@ def filter():
     if item_packaging:
         temp_i = filters.copy()
         temp_i.append(Warehouse.item_packaging.is_(True))
-        if labelling_min:
+        if itempackaging_min:
             temp_i.append(Warehouse.itempackaging_price >= itempackaging_min)
-        if labelling_max:
+            filter_prices['item_min'] = int(itempackaging_min)
+            filter_prices_bool['item_min'] = True
+        else:
+            filter_prices_bool['item_min'] = False
+        if itempackaging_max:
             temp_i.append(Warehouse.itempackaging_price <= itempackaging_max)
+            filter_prices['item_max'] = int(itempackaging_max)
+            filter_prices_bool['item_max'] = True
+        else:
+            filter_prices_bool['item_max'] = False
         itempackaging_query = Warehouse.query.filter(db.and_(*temp_i)).all()
         if manual_geo_data_entry and manualgeo_difference:
             itempackaging_difference = list(set(itempackaging_query) - set(manualgeo_difference))
@@ -118,10 +147,18 @@ def filter():
     if palette_packaging:
         temp_p = filters.copy()
         temp_p.append(Warehouse.palette_packaging.is_(True))
-        if labelling_min:
+        if palettepackaging_min:
             temp_p.append(Warehouse.palettepackaging_price >= palettepackaging_min)
-        if labelling_max:
+            filter_prices['palette_min'] = int(palettepackaging_min)
+            filter_prices_bool['palette_min'] = True
+        else:
+            filter_prices_bool['palette_min'] = False
+        if palettepackaging_max:
             temp_p.append(Warehouse.palettepackaging_price <= palettepackaging_max)
+            filter_prices['palette_max'] = int(palettepackaging_max)
+            filter_prices_bool['palette_max'] = True
+        else:
+            filter_prices_bool['palette_max'] = False
         palettepackaging_query = Warehouse.query.filter(db.and_(*temp_p)).all()
         if item_packaging and itempackaging_difference:
             palettepackaging_difference = list(set(palettepackaging_query) - set(itempackaging_difference))
@@ -136,6 +173,7 @@ def filter():
     
     if not labelling and not manual_geo_data_entry and not item_packaging and not palette_packaging:
         results = Warehouse.query.filter(db.and_(*filters)).all()
+
         
     if locActive:
         dicLoc = removeCharacters(locActive, '{":lattitudelongitude}')
@@ -155,9 +193,9 @@ def filter():
                 if x.id == warehouses[0]:
                     new_results.append(x)
 
-        return render_template('search/filtersearch.html', title = 'Search', data = new_results, time = warehouse_d_t, prices = prices, services = services)
+        return render_template('search/filtersearch.html', title = 'Search', data = new_results, time = warehouse_d_t, prices = prices, services = services, filter_prices = filter_prices, filter_prices_bool = filter_prices_bool)
     else:
-        return render_template('search/filtersearch.html', title = 'Search', data = results, prices = prices, services = services)
+        return render_template('search/filtersearch.html', title = 'Search', data = results, prices = prices, services = services, filter_prices = filter_prices, filter_prices_bool = filter_prices_bool)
 
 def getAddress(loc):
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="

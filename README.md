@@ -37,7 +37,13 @@ Authentication and login system with a smart search and query engine in the back
 31.05.2022 - Added autocomplete for address field. Now shows similar addresses while user types along. \
 01.06.2022 - Optimized the models by adding association proxy for easily accessing the one to one relationship services table prices. No need to loop everytime, looking if owner ID matches the owner. \
 01.06.2022 - Added filtering by 4 services prices provided by the warehouses. \
-02.06.2022 - Based on checked services options, filtering algorithm queries the warehouses offering not only checked services, but offering single service for more options. 
+02.06.2022 - Based on checked services options, filtering algorithm queries the warehouses offering not only checked services, but offering single service for more options. \
+02.06.2022 - When services checkboxes are checked, all the warehouses providing that service(not only multiple checked options, but the ones who provides only one of the services) will be shown. Front end now has algorithm to always show the correct results based on filters. 
+
+## Search page - NEW FEATURES
+Old algorithm has been heavily revised, now when you want to see warehouses that offers specific services, lets say merchant checks Labelling and Item packaging. Algorithm will first take in the filters such as name and needed storage. Then it will query the warehouses which offers labelling service. It will keep does warehouses in memory and then will query looking for warehouses that offer palette packaging service. Now we have 2 lists of warehouses objects, and most probably both lists have duplicate warehouses. What our algorithm does, it checks what services were asked for, and then we use except logic to remove the duplicate objects from lists, and at the end we join them all and return it to front end so merchant can see. 
+\
+For prices part, our algorithm creates 2 dictionaries which keeps the minimum and maximum price in memory and 2nd dictionary which keeps booleans to later check if options were true of false. The algorithm described in the previous paragraph works great, but lets say there are 2 warehouses: Warehouse A and B. Warehouse A has labelling priced at €50 and item packaging at €20 and Warehouse B has manual geo data priced at €30 and labelling at €40. When Merchant wants to find warehouses with services labelling prices at minimum €45 and manual geo priced at maximum €35, algorithm will return warehouse A and B, but we see that Warehouse B has labelling service which is priced below the given minimum price. So the algorithm created in the front end checkes two dictionaries to determine the which prices to show.
 
 ## Not working
 - Google and facebook authentication.
