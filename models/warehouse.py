@@ -38,3 +38,7 @@ class Warehouse(db.Model):
     manualgeo_price = association_proxy('warehouse_services', 'goods_receiving_manuel_geo_data')
     itempackaging_price = association_proxy('warehouse_services', 'item_packaging')
     palettepackaging_price = association_proxy('warehouse_services', 'palette_packaging')
+    storage = association_proxy('warehouse_services', 'storage')
+    goods_receiving_processing = association_proxy('warehouse_services', 'goods_receiving_processing')
+    item_picking = association_proxy('warehouse_services', 'item_picking')
+    packaging_material = association_proxy('warehouse_services', 'packaging_material')
