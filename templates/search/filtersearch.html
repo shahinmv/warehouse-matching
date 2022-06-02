@@ -91,29 +91,36 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                  {% if warehouse.labelling %}
-                  <div class="d-flex flex-row align-items-center mb-1">
-                    <h6 class="me-1">Labelling: €{{warehouse.labelling_price[0]}}</h6>
-                  </div> 
-                  
+                  {% if services[0] %}
+                    {% if warehouse.labelling %}
+                    <div class="d-flex flex-row align-items-center mb-1">
+                      <h6 class="me-1">Labelling: €{{warehouse.labelling_price[0]}}</h6>
+                    </div>  
+                    {% endif %}
                   {% endif %}
 
-                  {% if warehouse.manual_geo_data_entry %}
-                  <div class="d-flex flex-row align-items-center mb-1">
-                    <h6 class="me-1">Manual geo data: €{{warehouse.manualgeo_price[0]}}</h6>
-                  </div>
+                  {% if services[1] %}
+                    {% if warehouse.manual_geo_data_entry %}
+                    <div class="d-flex flex-row align-items-center mb-1">
+                      <h6 class="me-1">Manual geo data: €{{warehouse.manualgeo_price[0]}}</h6>
+                    </div>
+                    {% endif %}
+                  {% endif %}
+                    
+                  {% if services[2] %}
+                    {% if warehouse.item_packaging %}
+                    <div class="d-flex flex-row align-items-center mb-1">
+                      <h6 class="me-1">Item packaging: €{{warehouse.itempackaging_price[0]}}</h6>
+                    </div>
+                    {% endif %}
                   {% endif %}
 
-                  {% if warehouse.item_packaging %}
-                  <div class="d-flex flex-row align-items-center mb-1">
-                    <h6 class="me-1">Item packaging: €{{warehouse.itempackaging_price[0]}}</h6>
-                  </div>
-                  {% endif %}
-
-                  {% if warehouse.palette_packaging %}
-                  <div class="d-flex flex-row align-items-center mb-1">
-                    <h6 class="me-1">Palette packing: €{{warehouse.palettepackaging_price[0]}}</h6>
-                  </div>
+                  {% if services[3] %}
+                    {% if warehouse.palette_packaging %}
+                    <div class="d-flex flex-row align-items-center mb-1">
+                      <h6 class="me-1">Palette packing: €{{warehouse.palettepackaging_price[0]}}</h6>
+                    </div>
+                    {% endif %}
                   {% endif %}
                   <!-- <h6 class="text-success">Free shipping</h6> -->
                   <div class="d-flex flex-column mt-4">

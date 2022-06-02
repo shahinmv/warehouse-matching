@@ -53,7 +53,7 @@ def filter():
     
     locActive = request.form.get('closest_loc')
     
-    services = []
+    services = [labelling, manual_geo_data_entry, item_packaging, palette_packaging]
     filters = []
     words = name.split()
 
@@ -63,62 +63,80 @@ def filter():
             filters.append(Warehouse.name.ilike(search))
     if n_storage:
         filters.append(Warehouse.volume_available >= n_storage)
+    
+    #results = Warehouse.query.filter(db.and_(*filters)).all()
     #FILTERING BASED ON SERVICES
-    """ if labelling:
-        filters.append(Warehouse.labelling.is_(True))
-        services.append(Warehouse.labelling.is_(True))
-        if labelling_min:
-            filters.append(Warehouse.labelling_price >= labelling_min)
-        if labelling_max:
-            filters.append(Warehouse.labelling_price <= labelling_max)
-        
-    if manual_geo_data_entry:
-        filters.append(Warehouse.manual_geo_data_entry.is_(True))
-        if manualgeo_min:
-            filters.append(Warehouse.manualgeo_price >= manualgeo_min)
-        if manualgeo_max:
-            filters.append(Warehouse.manualgeo_price <= manualgeo_max)
+    results = []
+    labelling_difference = []
+    manualgeo_difference = []
+    itempackaging_difference = []
+    palettepackaging_difference = []
 
-    if item_packaging:
-        filters.append(Warehouse.item_packaging.is_(True))
-        if itempackaging_min:
-            filters.append(Warehouse.itempackaging_price >= itempackaging_min)
-        if itempackaging_max:
-            filters.append(Warehouse.itempackaging_price <= itempackaging_max)
-
-    if palette_packaging:
-        print("palette_packaging")
-        filters.append(Warehouse.palette_packaging.is_(True))
-        if palettepackaging_min:
-            filters.append(Warehouse.palettepackaging_price >= palettepackaging_min)
-        if palettepackaging_max:
-            filters.append(Warehouse.palettepackaging_price <= palettepackaging_max) """
-    temp_l = []
     if labelling:
+        temp_l = filters.copy()
         temp_l.append(Warehouse.labelling.is_(True))
         if labelling_min:
             temp_l.append(Warehouse.labelling_price >= labelling_min)
         if labelling_max:
             temp_l.append(Warehouse.labelling_price <= labelling_max)
         labelling_query = Warehouse.query.filter(db.and_(*temp_l)).all()
-        print(labelling_query)
 
-    temp_m = []
+        results = results + labelling_query
+
     if manual_geo_data_entry:
+        temp_m = filters.copy()
         temp_m.append(Warehouse.manual_geo_data_entry.is_(True))
         if labelling_min:
             temp_m.append(Warehouse.manualgeo_price >= manualgeo_min)
         if labelling_max:
             temp_m.append(Warehouse.manualgeo_price <= manualgeo_max)
         manualgeo_query = Warehouse.query.filter(db.and_(*temp_m)).all()
-        print(manualgeo_query)
+        if labelling and labelling_difference:
+            manualgeo_difference = list(set(manualgeo_query) - set(labelling_difference))
+        else:
+            manualgeo_difference = list(set(manualgeo_query) - set(results))
 
-    z = list(set(labelling_query) - set(manualgeo_query))
-    print(z)
+        results = results + manualgeo_difference
 
-    results = Warehouse.query.filter(db.and_(*filters)).all()
-    print(results)
+    if item_packaging:
+        temp_i = filters.copy()
+        temp_i.append(Warehouse.item_packaging.is_(True))
+        if labelling_min:
+            temp_i.append(Warehouse.itempackaging_price >= itempackaging_min)
+        if labelling_max:
+            temp_i.append(Warehouse.itempackaging_price <= itempackaging_max)
+        itempackaging_query = Warehouse.query.filter(db.and_(*temp_i)).all()
+        if manual_geo_data_entry and manualgeo_difference:
+            itempackaging_difference = list(set(itempackaging_query) - set(manualgeo_difference))
+        elif labelling and labelling_difference:
+            itempackaging_difference = list(set(itempackaging_query) - set(labelling_difference))
+        else:
+            itempackaging_difference = list(set(itempackaging_query) - set(results))
+        
+        results = results + itempackaging_difference
 
+    if palette_packaging:
+        temp_p = filters.copy()
+        temp_p.append(Warehouse.palette_packaging.is_(True))
+        if labelling_min:
+            temp_p.append(Warehouse.palettepackaging_price >= palettepackaging_min)
+        if labelling_max:
+            temp_p.append(Warehouse.palettepackaging_price <= palettepackaging_max)
+        palettepackaging_query = Warehouse.query.filter(db.and_(*temp_p)).all()
+        if item_packaging and itempackaging_difference:
+            palettepackaging_difference = list(set(palettepackaging_query) - set(itempackaging_difference))
+        elif manual_geo_data_entry and manualgeo_difference:
+            palettepackaging_difference = list(set(palettepackaging_query) - set(manualgeo_difference))
+        elif labelling and labelling_difference:
+            palettepackaging_difference = list(set(palettepackaging_query) - set(labelling_difference))
+        else:
+            palettepackaging_difference = list(set(palettepackaging_query) - set(results))
+        
+        results = results + palettepackaging_difference
+    
+    if not labelling and not manual_geo_data_entry and not item_packaging and not palette_packaging:
+        results = Warehouse.query.filter(db.and_(*filters)).all()
+        
     if locActive:
         dicLoc = removeCharacters(locActive, '{":lattitudelongitude}')
         loc = getAddress(dicLoc)
@@ -137,9 +155,9 @@ def filter():
                 if x.id == warehouses[0]:
                     new_results.append(x)
 
-        return render_template('search/filtersearch.html', title = 'Search', data = new_results, time = warehouse_d_t, prices = prices)
+        return render_template('search/filtersearch.html', title = 'Search', data = new_results, time = warehouse_d_t, prices = prices, services = services)
     else:
-        return render_template('search/filtersearch.html', title = 'Search', data = results, prices = prices)
+        return render_template('search/filtersearch.html', title = 'Search', data = results, prices = prices, services = services)
 
 def getAddress(loc):
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
