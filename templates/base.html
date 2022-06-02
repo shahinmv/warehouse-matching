@@ -190,6 +190,8 @@
             setTimeout(function() {
                 $('.alert').fadeOut('slow');
             }, 2000); // <-- time in milliseconds
+
+            getLocaldata();
         });
 
         function usernameRestriction(input){
@@ -224,6 +226,38 @@
                 fields: ['geometry', 'name'],
                 types: ['establishment']
             })
+        }
+
+        function rememberForm(){
+            var name = document.getElementById("search_name").value;
+            var n_storage = document.getElementById("n_storage").value;
+
+            var labelling = document.getElementById("labelling").checked;
+            var manualgeo = document.getElementById("manual_geo_data_entry").checked;
+            var item_p = document.getElementById("item_packaging").checked;
+            var palette_p = document.getElementById("palette_packaging").checked;
+            var loc = document.getElementById("closest_loc").checked;
+
+            localStorage.setItem("search_name", name)
+            localStorage.setItem("n_storage", n_storage)
+
+            localStorage.setItem("labelling", labelling ? 1 : 0)
+            localStorage.setItem("manual_geo_data_entry", manualgeo ? 1 : 0)
+            localStorage.setItem("item_packaging", item_p ? 1 : 0)
+            localStorage.setItem("palette_packaging", palette_p ? 1 : 0)
+            localStorage.setItem("loc", loc ? 1 : 0)
+        }
+
+        function getLocaldata(){
+            document.getElementById("search_name").value = localStorage.getItem("search_name");
+            document.getElementById("n_storage").value = localStorage.getItem("n_storage");
+            
+            document.getElementById("labelling").checked = !!Number(localStorage.getItem("labelling"));
+            document.getElementById("manual_geo_data_entry").checked = !!Number(localStorage.getItem("manual_geo_data_entry"));
+            document.getElementById("item_packaging").checked = !!Number(localStorage.getItem("item_packaging"));
+            document.getElementById("palette_packaging").checked = !!Number(localStorage.getItem("palette_packaging"));
+            document.getElementById("closest_loc").checked = !!Number(localStorage.getItem("loc"));
+
         }
  
 </script>
