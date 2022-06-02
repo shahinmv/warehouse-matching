@@ -3,6 +3,11 @@
 {% block search %}
 
     <div class="container py-5">
+      {% if not data %}
+      <div style="display: flex;align-items: center;justify-content: center;">
+        <h3>We are sorry... There is no suitable warehouse in our network for the criteria you selected.</h3>
+      </div>
+      {% endif %}
         {% for warehouse in data %}
       <div class="row justify-content-center mb-3">
         <div class="col-md-12 col-xl-10">
