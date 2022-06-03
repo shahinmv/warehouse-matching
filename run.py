@@ -9,6 +9,7 @@ from processes import processes as processes_blueprint
 from models.user import User
 from models.warehouse import Warehouse
 from models.warehouse_service import  WarehouseServices
+from models.warehouse_booking import  WarehouseBooking
 
 from db import db
 

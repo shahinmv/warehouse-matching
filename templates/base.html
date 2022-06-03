@@ -257,7 +257,19 @@
             document.getElementById("item_packaging").checked = !!Number(localStorage.getItem("item_packaging"));
             document.getElementById("palette_packaging").checked = !!Number(localStorage.getItem("palette_packaging"));
             document.getElementById("closest_loc").checked = !!Number(localStorage.getItem("loc"));
+            
+            removeData()
+        }
 
+        function removeData(){
+            localStorage.removeItem("search_name");
+            localStorage.removeItem("n_storage");
+
+            localStorage.removeItem("labelling");
+            localStorage.removeItem("manual_geo_data_entry");
+            localStorage.removeItem("item_packaging");
+            localStorage.removeItem("palette_packaging");
+            localStorage.removeItem("loc");
         }
  
 </script>

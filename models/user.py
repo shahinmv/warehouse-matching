@@ -2,6 +2,7 @@ from email.policy import default
 from db import db
 from flask_login import UserMixin
 import uuid
+from sqlalchemy.ext.associationproxy import association_proxy
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -18,6 +19,8 @@ class User(UserMixin, db.Model):
     u_role = db.Column(db.String(15))
     username = db.Column(db.String(20))
 
+    warehouse = db.relationship('Warehouse', lazy='dynamic')
+
     def __init__(self, name, surname, email, role, username, password):
         self.name = name
         self.surname = surname
@@ -31,3 +34,5 @@ class User(UserMixin, db.Model):
 
     """ def set_loc(self, loc):
         self.location = loc """
+
+    warehouse_id = association_proxy('warehouse', 'id')

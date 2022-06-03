@@ -40,6 +40,19 @@ Authentication and login system with a smart search and query engine in the back
 **02.06.2022** - Based on checked services options, filtering algorithm queries the warehouses offering not only checked services, but offering single service for more options. \
 **02.06.2022** - When services checkboxes are checked, all the warehouses providing that service(not only multiple checked options, but the ones who provides only one of the services) will be shown. Front end now has algorithm to always show the correct results based on filters. \
 **02.06.2022** - Search input is now kept in local storage.
+**03.06.2022** - Model for booking requests are created, new relationship is created between user and warehouses table.
+**03.06.2022** - Demo version of succession process number 3 is deployed. More details below
+
+## Succession process - DEMO
+Demo version for succession process(step 3) is now functional. By clicking the **Request booking** button on warehouse details page, modal component will open where you input all the required fields. I followed succession processes steps closely, with minor changes. Table properties are as described in the document, only that contracted boolean variable is set to NULL at the beginning. Reason for that is, when the warehouse owner rejects the booking request, it will be set to false, and wont be visible to warehouse owner anymore. So in the future, we can use the data, maybe for ML algorithm. 
+\
+\
+When merchant fills in the form fields and submits the form, both merchant and warehouse owner receives a mail, with related information. Warehouse owner can go to their dashboard and view booking requests, just basic information such as merchant name, which warehouse is requested, check-in and check-out. By pressing on more details, modal component opens up showing all the details, and there warehouse owner can decide to reject or accept. By rejecting the request, contracted field is set to false, and merchant receives mail saying their request is rejected. 
+\
+\
+**What is missing?**
+- Accept button does not work.
+- Merchant can not view their requests yet.
 
 ## Search page - NEW FEATURES
 Old algorithm has been heavily revised, now when you want to see warehouses that offers specific services, lets say merchant checks Labelling and Item packaging. Algorithm will first take in the filters such as name and needed storage. Then it will query the warehouses which offers labelling service. It will keep does warehouses in memory and then will query looking for warehouses that offer palette packaging service. Now we have 2 lists of warehouses objects, and most probably both lists have duplicate warehouses. What our algorithm does, it checks what services were asked for, and then we use except logic to remove the duplicate objects from lists, and at the end we join them all and return it to front end so merchant can see. 

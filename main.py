@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
 import requests
 from db import db
@@ -7,6 +8,7 @@ from werkzeug.utils import secure_filename
 
 from models.warehouse import Warehouse
 from models.warehouse_service import WarehouseServices
+from models.warehouse_booking import WarehouseBooking
 from models.img import Img
 
 
@@ -37,8 +39,16 @@ def dashboard():
         users = User.query.all()
         return render_template('dashboard.html', data = data, users = users, title = "Dashboard")
     elif current_user.u_role == "owner":
+        bookings = []
+        for x in current_user.warehouse_id:
+            temp = WarehouseBooking.query.filter(WarehouseBooking.warehouse_id == x, WarehouseBooking.contracted == None).all()
+            if temp:
+                for item in temp:
+                    bookings.append(item)
+
+        users = User.query.all()
         data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
-        return render_template('dashboard.html', data = data, title = "Dashboard")
+        return render_template('dashboard.html', data = data, users = users, booking = bookings, title = "Dashboard")
     else:
         abort(403) 
 

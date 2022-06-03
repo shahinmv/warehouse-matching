@@ -1,4 +1,3 @@
-from cgitb import strong
 from db import db
 
 class WarehouseServices(db.Model):
