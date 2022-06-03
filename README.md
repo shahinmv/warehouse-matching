@@ -44,7 +44,7 @@ Authentication and login system with a smart search and query engine in the back
 **03.06.2022** - Demo version of succession process number 3 is deployed. More details below
 
 ## Succession process - DEMO
-Demo version for succession process(step 3) is now functional. By clicking the **Request booking** button on warehouse details page, modal component will open where you input all the required fields. I followed succession processes steps closely, with minor changes. Table properties are as described in the document, only that contracted boolean variable is set to NULL at the beginning. Reason for that is, when the warehouse owner rejects the booking request, it will be set to false, and wont be visible to warehouse owner anymore. So in the future, we can use the data, maybe for ML algorithm. 
+Demo version for succession process(step 3) is now functional. By clicking the **Request booking** button on warehouse details page, modal component will open where you input all the required fields. I followed succession processes steps closely, with minor changes. Table properties are as described in the document, only that contracted boolean variable is set to NULL at the beginning. Reason for that is, when the warehouse owner rejects the booking request, it will be set to false, and wont be visible to warehouse owner anymore. So in the future, we can use the data, maybe for ML algorithm, more data better results. 
 \
 \
 When merchant fills in the form fields and submits the form, both merchant and warehouse owner receives a mail, with related information. Warehouse owner can go to their dashboard and view booking requests, just basic information such as merchant name, which warehouse is requested, check-in and check-out. By pressing on more details, modal component opens up showing all the details, and there warehouse owner can decide to reject or accept. By rejecting the request, contracted field is set to false, and merchant receives mail saying their request is rejected. 
@@ -59,6 +59,7 @@ Old algorithm has been heavily revised, now when you want to see warehouses that
 \
 \
 For prices part, our algorithm creates 2 dictionaries which keeps the minimum and maximum price in memory and 2nd dictionary which keeps booleans to later check if options were true of false. The algorithm described in the previous paragraph works great, but lets say there are 2 warehouses: Warehouse A and B. Warehouse A has labelling priced at €50 and item packaging at €20 and Warehouse B has manual geo data priced at €30 and labelling at €40. When Merchant wants to find warehouses with services labelling prices at minimum €45 and manual geo priced at maximum €35, algorithm will return warehouse A and B, but we see that Warehouse B has labelling service which is priced below the given minimum price. So the algorithm created in the front end checkes two dictionaries to determine the which prices to show.
+
 
 ## Not working
 - Google and facebook authentication.
