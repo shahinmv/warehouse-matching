@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="vh-200" style="background-color: #e9e8e8;">
+    <div class="container py-5">
+        <div class="pb-2" style="display: flex;align-items: center;justify-content: center;">
+            <h3>Requests</h3>
+          </div>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          {% for request in requests %}
+        <div class="col col-xl-10">
+          <div class="card mb-5" style="border-radius: 15px;">
+            <div class="card-body p-4">
+              {% for warehouse in data %}
+              {% if request.warehouse_id == warehouse.id %}
+              <h3 class="mb-3">{{warehouse.name}}</h3>
+              
+              {% endif %}
+              {% endfor %}
+              <p> Requested on {{request.date_requested}}</p>
+              <hr class="my-4">
+              <div class="d-flex justify-content-start align-items-center">
+                <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
+                    class="text-muted small">settings</span></p>
+                <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                    class="text-muted small">program link</span></p>
+                <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span
+                    class="text-muted small">program link</span>
+                  <span class="ms-3 me-4">|</span></p>
+                <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+      </div>
+      <div class="pb-2" style="display: flex;align-items: center;justify-content: center;">
+        <h3>Active bookings</h3>
+      </div>
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        {% for active in active_bookings %}
+      <div class="col col-xl-10">
+        <div class="card mb-5" style="border-radius: 15px;">
+          <div class="card-body p-4">
+            <h3 class="mb-3">Program Title</h3>
+            <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Created by
+              <strong>MDBootstrap</strong> on 11 April , 2021</p>
+            <hr class="my-4">
+            <div class="d-flex justify-content-start align-items-center">
+              <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
+                  class="text-muted small">settings</span></p>
+              <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                  class="text-muted small">program link</span></p>
+              <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span
+                  class="text-muted small">program link</span>
+                <span class="ms-3 me-4">|</span></p>
+              <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+    </div>
+    </div>
+  </section>
+{% endblock %}

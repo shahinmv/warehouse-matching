@@ -6,6 +6,7 @@ from models.warehouse import Warehouse
 from models.warehouse_service import WarehouseServices
 from models.warehouse_booking import WarehouseBooking
 from flask_mail import Mail, Message
+from datetime import datetime
 
 processes = Blueprint('processes', __name__)
 mail = Mail()
@@ -30,6 +31,10 @@ def requestInfo(warehouse_id):
 @processes.route('/details/<int:warehouse_id>/request', methods=['POST'])
 @login_required
 def requestBooking(warehouse_id):
+    check = WarehouseBooking.query.filter(WarehouseBooking.merchant_id==current_user.id, WarehouseBooking.warehouse_id==warehouse_id).all()
+    if check:
+        flash("You already requested a booking")
+        return redirect(url_for('search.details', warehouse_id = warehouse_id))
     n_storage = request.form.get('neededStorage')
     check_in = request.form.get('check-in')
     check_out = request.form.get('check-out')
@@ -43,7 +48,7 @@ def requestBooking(warehouse_id):
 
     warehouse = Warehouse.query.filter_by(id = warehouse_id).first()
 
-    new_contract = WarehouseBooking(current_user.id, warehouse_id, n_storage, check_in, check_out, receiving_processing, item_picking, packaging_material)
+    new_contract = WarehouseBooking(current_user.id, warehouse_id, n_storage, check_in, check_out, receiving_processing, item_picking, packaging_material, datetime.now())
 
     if warehouse.labelling:
         new_contract.set_labelling(labelling)
@@ -91,4 +96,36 @@ def rejectMailMerchant(warehouse, booking):
     msg.body = render_template('message/rejectmerchant.html', merchant = merchant, warehouse = warehouse)
     mail.send(msg)
 
+
+@processes.route('/dashboard/accept/<int:booking_id>')
+def accept(booking_id):
+    booking = WarehouseBooking.query.filter(WarehouseBooking.id == booking_id).first()
+    warehouse = Warehouse.query.filter(Warehouse.id == booking.warehouse_id).first()
+
+    if current_user.id == warehouse.owner:
+        if booking:
+            booking.contracted = True
+            db.session.commit()
+            acceptMailMerchant(warehouse, booking)
+        return redirect(url_for('main.dashboard'))
+    else:
+        abort(403)
+
+def acceptMailMerchant(warehouse, booking):
+    merchant = User.query.filter(User.id == booking.merchant_id).first()
+    msg = Message(subject="Booking request accepted", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[merchant.email])
+    msg.body = render_template('message/acceptmerchant.html', merchant = merchant, warehouse = warehouse)
+    mail.send(msg)
+
+@processes.route('/dashboard/active-bookings')
+def view_bookings():
+    bookings = []
+    for x in current_user.warehouse_id:
+        temp = WarehouseBooking.query.filter(WarehouseBooking.warehouse_id == x, WarehouseBooking.contracted == True).all()
+        if temp:
+            for item in temp:
+                bookings.append(item)
+    users = User.query.all()
+    data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
+    return render_template('activebookings.html', users = users, bookings = bookings, data = data)
        

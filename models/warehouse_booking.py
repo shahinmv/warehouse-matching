@@ -17,8 +17,9 @@ class WarehouseBooking(db.Model):
     item_packaging = db.Column(db.Boolean)
     packaging_material = db.Column(db.Integer, default = 0)
     contracted = db.Column(db.Boolean)
+    date_requested = db.Column(db.DateTime)
 
-    def __init__(self, merchant, owner, r_storage, check_in, check_out, goods_receiving_processing, item_picking, packaging_material):
+    def __init__(self, merchant, owner, r_storage, check_in, check_out, goods_receiving_processing, item_picking, packaging_material, date_requested):
         self.merchant_id = merchant
         self.warehouse_id = owner
         self.r_storage = r_storage
@@ -27,6 +28,7 @@ class WarehouseBooking(db.Model):
         self.goods_receiving_processing = goods_receiving_processing
         self.item_picking = item_picking
         self.packaging_material = packaging_material
+        self.date_requested = date_requested
 
     def set_labelling(self, labelling):
         self.labelling = labelling
