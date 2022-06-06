@@ -1,4 +1,3 @@
-from cProfile import label
 from db import db
 
 class WarehouseBooking(db.Model):

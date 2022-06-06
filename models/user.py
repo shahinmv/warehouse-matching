@@ -1,4 +1,3 @@
-from email.policy import default
 from db import db
 from flask_login import UserMixin
 import uuid
