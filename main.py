@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
 import requests
 from db import db
