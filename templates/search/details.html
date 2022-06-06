@@ -173,52 +173,156 @@
             <div class="col-md-12">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4" style="display: flex;align-items: center;justify-content: center;"><span class="text-primary font-italic me-1">Services prices</span>
-                  </p>
-                  <ul class="list-group list-group-flush rounded-3">
-                    {% if data.labelling %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Labelling: </p>
-                      <p class="mb-0">€{{data.labelling_price[0]}}</p>
-                    </li>
-                    {% endif %}
-                    {% if data.manual_geo_data_entry%}
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Manual geo data entry: </p>
-                      <p class="mb-0">€{{data.manualgeo_price[0]}}</p>
-                    </li>
-                    {% endif %}
-                    {% if data.item_packaging%}
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Item packaging: </p>
-                      <p class="mb-0">€{{data.itempackaging_price[0]}}</p>
-                    </li>
-                    {% endif %}
-                    {% if data.palette_packaging%}
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Palette packaging: </p>
-                      <p class="mb-0">€{{data.palettepackaging_price[0]}}</p>
-                    </li>
-                    {% endif %}
+                  <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>Services</th>
+                        <th>Availability/Capacity</th>
+                        <th>Score</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Storage</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">{{data.volume_available}} / {{data.volume_total}}</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.storage[0]}}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Goods receiving processing</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.goods_receiving_processing[0]}}</td>
+                      </tr>
 
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Storage: </p>
-                      <p class="mb-0">€{{data.storage[0]}}</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Goods receiving processing: </p>
-                      <p class="mb-0">€{{data.goods_receiving_processing[0]}}</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Item picking: </p>
-                      <p class="mb-0">€{{data.item_picking[0]}}</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <p class="mb-0">Packaging material: </p>
-                      <p class="mb-0">€{{data.packaging_material[0]}}</p>
-                    </li>
-              
-                  </ul>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Item picking</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.item_picking[0]}}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Packaging material</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.packaging_material[0]}}</td>
+                      </tr>
+
+                      {% if data.labelling %}
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Labelling</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.labelling_price[0]}}</td>
+                      </tr>
+                      {% endif %}
+                      {% if data.manual_geo_data_entry %}
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Manual geo data entry</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.labelling_price[0]}}</td>
+                      </tr>
+                      {% endif %}
+                      {% if data.item_packaging %}
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Item packaging</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.itempackaging_price[0]}}</td>
+                      </tr>
+                      {% endif %}
+                      {% if data.palette_packaging %}
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                              <p class="fw-bold mb-1">Palette packaging</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-normal mb-1">not set yet</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-warning rounded-pill d-inline">not set yet</span>
+                        </td>
+                        <td>€{{data.palettepackaging_price[0]}}</td>
+                      </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
