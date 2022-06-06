@@ -41,7 +41,11 @@ Authentication and login system with a smart search and query engine in the back
 **02.06.2022** - When services checkboxes are checked, all the warehouses providing that service(not only multiple checked options, but the ones who provides only one of the services) will be shown. Front end now has algorithm to always show the correct results based on filters. \
 **02.06.2022** - Search input is now kept in local storage.
 **03.06.2022** - Model for booking requests are created, new relationship is created between user and warehouses table.
-**03.06.2022** - Demo version of succession process number 3 is deployed. More details below
+**03.06.2022** - Demo version of succession process number 3 is deployed. More details below. \
+**06.06.2022** - Booking table now automatically sets the date of the request. \
+**06.06.2022** - Same merchant can not request a booking on the same warehouse more than once. \
+**06.06.2022** - Warehouse owner can now accept the request and view them on new page /dashboard/active-booking. \
+**06.06.2022** - Merchant has new dashboard page to view the requested bookings and active ones. **Not finished yet**
 
 ## Succession process - DEMO
 Demo version for succession process(step 3) is now functional. By clicking the **Request booking** button on warehouse details page, modal component will open where you input all the required fields. I followed succession processes steps closely, with minor changes. Table properties are as described in the document, only that contracted boolean variable is set to NULL at the beginning. Reason for that is, when the warehouse owner rejects the booking request, it will be set to false, and wont be visible to warehouse owner anymore. So in the future, we can use the data, maybe for ML algorithm, more data better results. 
