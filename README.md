@@ -45,7 +45,9 @@ Authentication and login system with a smart search and query engine in the back
 **06.06.2022** - Booking table now automatically sets the date of the request. \
 **06.06.2022** - Same merchant can not request a booking on the same warehouse more than once. \
 **06.06.2022** - Warehouse owner can now accept the request and view them on new page /dashboard/active-booking. \
-**06.06.2022** - Merchant has new dashboard page to view the requested bookings and active ones. **Not finished yet**
+**06.06.2022** - Merchant has new dashboard page to view the requested bookings and active ones. \
+**07.06.2022** - Merchant can view the requests, cancel them and view the active ones when warehouse owner accepts them. \
+**07.06.2022** - New warehouse_owner_id column, new datetime column with hours/minutes/seconds, front end small changes, mail messages changes. 
 
 ## Succession process - DEMO
 Demo version for succession process(step 3) is now functional. By clicking the **Request booking** button on warehouse details page, modal component will open where you input all the required fields. I followed succession processes steps closely, with minor changes. Table properties are as described in the document, only that contracted boolean variable is set to NULL at the beginning. Reason for that is, when the warehouse owner rejects the booking request, it will be set to false, and wont be visible to warehouse owner anymore. So in the future, we can use the data, maybe for ML algorithm, more data better results. 
