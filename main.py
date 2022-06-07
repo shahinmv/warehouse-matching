@@ -53,10 +53,14 @@ def dashboard():
         requests = WarehouseBooking.query.filter(WarehouseBooking.merchant_id == current_user.id, WarehouseBooking.contracted == None).all()
         active_bookings = WarehouseBooking.query.filter(WarehouseBooking.merchant_id == current_user.id, WarehouseBooking.contracted == True).all()
         data = []
+        active_warehouses = []
         for x in requests:
             data.append(Warehouse.query.filter(Warehouse.id == x.warehouse_id).first())
+        for x in active_bookings:
+            active_warehouses.append(Warehouse.query.filter(Warehouse.id == x.warehouse_id).first())
         data = list(dict.fromkeys(data))
-        return render_template('dashboard-merchant.html', requests = requests, data = data, active_bookings=active_bookings)
+        print(active_warehouses)
+        return render_template('dashboard-merchant.html', requests = requests, data = data, active_bookings=active_bookings, active_warehouses=active_warehouses)
     else:
         abort(403) 
 
