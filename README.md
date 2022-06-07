@@ -56,9 +56,7 @@ Demo version for succession process(step 3) is now functional. By clicking the *
 When merchant fills in the form fields and submits the form, both merchant and warehouse owner receives a mail, with related information. Warehouse owner can go to their dashboard and view booking requests, just basic information such as merchant name, which warehouse is requested, check-in and check-out. By pressing on more details, modal component opens up showing all the details, and there warehouse owner can decide to reject or accept. By rejecting the request, contracted field is set to false, and merchant receives mail saying their request is rejected. 
 \
 \
-**What is missing?**
-- Accept button does not work.
-- Merchant can not view their requests yet.
+Merchant can go to their dashboard to view the requests they made, and active bookings. Once Warehouse accepts the request, merchant receives a mail, and they can go to their dashboard to see that the booking is now active. They can also cancel their requests if they want. 
 
 ## Search page - NEW FEATURES
 Old algorithm has been heavily revised, now when you want to see warehouses that offers specific services, lets say merchant checks Labelling and Item packaging. Algorithm will first take in the filters such as name and needed storage. Then it will query the warehouses which offers labelling service. It will keep does warehouses in memory and then will query looking for warehouses that offer palette packaging service. Now we have 2 lists of warehouses objects, and most probably both lists have duplicate warehouses. What our algorithm does, it checks what services were asked for, and then we use except logic to remove the duplicate objects from lists, and at the end we join them all and return it to front end so merchant can see. 
