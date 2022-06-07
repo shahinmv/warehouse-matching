@@ -38,7 +38,7 @@ Authentication and login system with a smart search and query engine in the back
 **01.06.2022** - Optimized the models by adding association proxy for easily accessing the one to one relationship services table prices. No need to loop everytime, looking if owner ID matches the owner. \
 **01.06.2022** - Added filtering by 4 services prices provided by the warehouses. \
 **02.06.2022** - Based on checked services options, filtering algorithm queries the warehouses offering not only checked services, but offering single service for more options. \
-**02.06.2022** - When services checkboxes are checked, all the warehouses providing that service(not only multiple checked options, but the ones who provides only one of the services) will be shown. Front end now has algorithm to always show the correct results based on filters. \
+**02.06.2022** - When services checkboxes are checked, all the warehouses providing that service(not only multiple checked options, but the ones who provides only one of the services) will be shown. Front end now has alcd gorithm to always show the correct results based on filters. \
 **02.06.2022** - Search input is now kept in local storage.
 **03.06.2022** - Model for booking requests are created, new relationship is created between user and warehouses table.
 **03.06.2022** - Demo version of succession process number 3 is deployed. More details below. \

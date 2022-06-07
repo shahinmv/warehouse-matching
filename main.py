@@ -45,7 +45,6 @@ def dashboard():
                 for item in temp:
                     bookings.append(item)
 
-
         users = User.query.all()
         data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
         

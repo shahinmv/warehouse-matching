@@ -20,7 +20,11 @@
               <p class="text-muted mb-1">{{data.address}}</p>
               <p class="text-muted mb-4">{{data.email}}</p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Request Booking</button>
+                {% if not check %}
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" >Request Booking</button>
+                {% else %}
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" disabled>Already requested</button>
+                {% endif %}
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
                 <!-- Modal -->
                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

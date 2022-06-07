@@ -17,19 +17,15 @@
               
               {% endif %}
               {% endfor %}
-              <p> Requested on {{request.date_requested}}</p>
+              <p> Requested on {{request.getTimeinMonth()}}</p>
               <hr class="my-4">
               <div class="d-flex justify-content-start align-items-center">
-                <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
-                    class="text-muted small">settings</span></p>
-                <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
-                    class="text-muted small">program link</span></p>
-                <p class="mb-0 text-uppercase"><i class="fas fa-ellipsis-h ms-4 me-2"></i> <span
-                    class="text-muted small">program link</span>
+                <a href="https://warehouse-thesis.herokuapp.com/search/details/{{request.warehouse_id}}"><p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
+                    class="text-muted small">Warehouse link</span></p></a>
                   <span class="ms-3 me-4">|</span></p>
-                <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
-                  <i class="fas fa-plus"></i>
-                </button>
+                <a href="{{url_for('processes.cancel_request', request_id = request.id)}}"><button type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                  <i class="fas fa-times"></i>
+                </button></a>
               </div>
             </div>
         </div>

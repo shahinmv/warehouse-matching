@@ -1,3 +1,4 @@
+from re import L
 from flask_login import login_required, current_user
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from db import db
@@ -48,7 +49,7 @@ def requestBooking(warehouse_id):
 
     warehouse = Warehouse.query.filter_by(id = warehouse_id).first()
 
-    new_contract = WarehouseBooking(current_user.id, warehouse_id, n_storage, check_in, check_out, receiving_processing, item_picking, packaging_material, datetime.now())
+    new_contract = WarehouseBooking(current_user.id, warehouse_id, warehouse.owner, n_storage, check_in, check_out, receiving_processing, item_picking, packaging_material)
 
     if warehouse.labelling:
         new_contract.set_labelling(labelling)
@@ -129,3 +130,19 @@ def view_bookings():
     data = Warehouse.query.filter_by(owner = current_user.id).order_by(Warehouse.id.asc()).all()
     return render_template('activebookings.html', users = users, bookings = bookings, data = data)
        
+@processes.route('/dashboard/cancel-request/<int:request_id>')
+def cancel_request(request_id):
+    booking = WarehouseBooking.query.filter(WarehouseBooking.id == request_id).first()
+    warehouse = Warehouse.query.filter(Warehouse.id == booking.warehouse_id).first()
+    if booking.merchant_id == current_user.id:
+        booking.contracted = False
+        db.session.commit()
+        cancelMailMerchant(warehouse)
+        return redirect(url_for('main.dashboard'))
+    else:
+        abort(403)
+
+def cancelMailMerchant(warehouse):
+    msg = Message(subject="Booking request cancelled", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[current_user.email])
+    msg.body = render_template('message/cancelmerchant.html', merchant = current_user, warehouse = warehouse)
+    mail.send(msg)

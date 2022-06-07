@@ -4,6 +4,7 @@ from db import db
 from flask_login import login_required, current_user
 from models.warehouse import Warehouse
 from models.warehouse_service import  WarehouseServices
+from models.warehouse_booking import WarehouseBooking
 from models.user import User
 import json
 
@@ -20,7 +21,8 @@ def main():
 def details(warehouse_id):
     data = Warehouse.query.filter_by(id = warehouse_id).first()
     owner = User.query.filter_by(id = data.owner).first()
-    return render_template('search/details.html', data = data, owner = owner, title = "Warehouse details")
+    check = WarehouseBooking.query.filter(WarehouseBooking.merchant_id==current_user.id, WarehouseBooking.warehouse_id==warehouse_id).first()
+    return render_template('search/details.html', data = data, owner = owner, check = check, title = "Warehouse details")
 
 @search.route('/search/filter', methods = ['POST'])
 def filter():
