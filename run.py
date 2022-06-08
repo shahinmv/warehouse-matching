@@ -33,7 +33,7 @@ app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = "fulfil.it.auto@gmail.com"
 app.config['MAIL_DEFAULT_SENDER'] = "fulfil.it.auto@gmail.com"
-app.config['MAIL_PASSWORD'] = 'Shahin2001'
+app.config['MAIL_PASSWORD'] = 'ltkcxyvorgxjswqo'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
