@@ -22,6 +22,10 @@
               <div class="d-flex justify-content-center mb-2">
                 {% if not check %}
                 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" >Request Booking</button>
+                {% elif check.contracted == True %}
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" disabled>Already booked</button>
+                {% elif check.contracted == False %}
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" >Request Booking</button>
                 {% else %}
                 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" disabled>Already requested</button>
                 {% endif %}

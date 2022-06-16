@@ -53,7 +53,166 @@
               <div class="d-flex justify-content-start align-items-center">
                 <a href="https://warehouse-thesis.herokuapp.com/search/details/{{active.warehouse_id}}"><p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i> <span
                     class="text-muted small">Warehouse link</span></p></a>
-                  <span class="ms-3 me-4">|</span></p>
+                  <span class="ms-3">|</span>
+                  <button style="border: none;background: none;"  data-mdb-toggle="modal" data-mdb-target="#modal{{active.warehouse_id}}">
+                  <p class="mb-0 text-uppercase"><i class="fas fa-link ms-4 me-2"></i>
+                    <span class="text-muted small">Rate </span></p></button>
+                    
+                    <div class="modal fade" id="modal{{active.warehouse_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            {% for warehouse in active_warehouses %}
+                            {% if active.warehouse_id == warehouse.id %}
+                            <h5 class="modal-title" id="exampleModalLabel">Rate the {{warehouse.name}}</h5>
+                            {% endif %}
+                            {% endfor %} 
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              
+                          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="tab-quality" data-mdb-toggle="pill" href="#pills-quality" role="tab"
+                                aria-controls="pills-quality" aria-selected="true">Quality</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="tab-speed" data-mdb-toggle="pill" href="#pills-speed" role="tab"
+                                aria-controls="pills-speed" aria-selected="false">Speed</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="tab-price" data-mdb-toggle="pill" href="#pills-price" role="tab"
+                                aria-controls="pills-price" aria-selected="false">Price</a>
+                            </li>
+                          </ul>
+
+                          <div class="tab-content">
+                            <div class="tab-pane fade show active" id="pills-quality" role="tabpanel" aria-labelledby="tab-quality">
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Picking</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" maxlength="4" id="rateQualityPicking" name ="rateQualityPicking" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Packaging</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateQualityPackaging" name ="rateQualityPackaging" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Labelling</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateQualityLabelling" name ="rateQualityLabelling" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Manual Geo Data Entry</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateQualityManualGeo" name ="rateQualityManualGeo" class="form-control"/>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="pills-speed" role="tabpanel" aria-labelledby="tab-speed">
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Picking</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateSpeedPicking" name ="rateSpeedPicking" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Packaging</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateSpeedPackaging" name ="rateSpeedPackaging" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Labelling</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateSpeedLabelling" name ="rateSpeedLabelling" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Manual Geo Data Entry</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="rateSpeedManualGeo" name ="rateSpeedManualGeo" class="form-control"/>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-price" role="tabpanel" aria-labelledby="tab-price">
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Picking</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="ratePricePicking" name ="ratePricePicking" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Packaging</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="ratePricePackaging" name ="ratePricePackaging" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Labelling</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="ratePriceLabelling" name ="ratePriceLabelling" class="form-control"/>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <p class="mb-0">Manual Geo Data Entry</p>
+                                </div>
+                                <div class="col-sm-7">
+                                  <input type="number" id="ratePriceManualGeo" name ="ratePriceManualGeo" class="form-control"/>
+                                </div>
+                              </div>
+                          </div>
+                          </div>
+                            
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="">
+                            <button type="button" class="btn btn-success">Accept</button>
+                            </a>
+                          </div>  
+                          
+                        </div>
+                      </div>
+                    </div>
               </div>
           </div>
       </div>
