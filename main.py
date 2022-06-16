@@ -227,4 +227,10 @@ def add_warehousePost():
 def software():
     return render_template('software/software.html', title = "Under construction")
 
+@main.route('/dashboard/rating/<int:warehouse_id>', methods=['POST'])
+def set_rating(warehouse_id):
+    print(warehouse_id)
+
+    return redirect(url_for('main.dashboard'))
+
 

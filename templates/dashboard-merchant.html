@@ -61,6 +61,7 @@
                     <div class="modal fade" id="modal{{active.warehouse_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
+                          <form method="POST" action="/dashboard/rating/{{active.warehouse_id}}">
                           <div class="modal-header">
                             {% for warehouse in active_warehouses %}
                             {% if active.warehouse_id == warehouse.id %}
@@ -205,11 +206,11 @@
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <a href="">
-                            <button type="button" class="btn btn-success">Accept</button>
+                            <a href="{{url_for('main.set_rating', warehouse_id = active.warehouse_id)}}">
+                            <button type="submit" class="btn btn-success">Accept</button>
                             </a>
                           </div>  
-                          
+                        </form>
                         </div>
                       </div>
                     </div>
