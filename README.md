@@ -72,6 +72,7 @@ For prices part, our algorithm creates 2 dictionaries which keeps the minimum an
 
 ## To do
 - Organize the directory.
+- Prepare document for our RBM model.
 
 ## Technologies
 
