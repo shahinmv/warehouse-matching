@@ -1,4 +1,4 @@
 test.py
 __pycache__/
-test_rbm/movies_rbm.py
-test_rbm/test_tensorflow.py
+DNN/movies_rbm.py
+DNN/test_tensorflow.py
