@@ -7,7 +7,7 @@ class Ratings(db.Model):
 
     user_id = db.Column(db.Integer)
     warehouse_id = db.Column(db.Integer)
-    score = db.Column(db.Integer)
+    score = db.Column(db.Float)
 
     def __init__(self, user_id, warehouse_id, score):
         self.user_id = user_id

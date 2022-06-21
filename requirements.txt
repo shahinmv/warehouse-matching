@@ -12,5 +12,6 @@ urllib3==1.26.9
 Werkzeug==2.1.2
 psycopg2-binary
 numpy
-tensorflow
+torch
 scikit-surprise-1.1.1
+pandas

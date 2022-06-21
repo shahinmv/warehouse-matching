@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 from models.warehouse import Warehouse
 from models.warehouse_service import WarehouseServices
 from models.warehouse_booking import WarehouseBooking
+from models.ratings import Ratings
 from models.img import Img
 
 
@@ -229,7 +230,31 @@ def software():
 
 @main.route('/dashboard/rating/<int:warehouse_id>', methods=['POST'])
 def set_rating(warehouse_id):
-    print(warehouse_id)
+    qualityPicking = request.form.get('rateQualityPicking')
+    qualityPackaging = request.form.get('rateQualityPackaging')
+    qualityLabelling = request.form.get('rateQualityLabelling')
+    qualityManualGeo = request.form.get('rateQualityManualGeo')
+
+    listRatings = [qualityPicking, qualityPackaging, qualityLabelling, qualityManualGeo]
+
+    sumRating = 0
+
+    for x in listRatings:
+        if x:
+            sumRating += int(x)
+
+    total = [i for i in listRatings if i]
+    averageRating = sumRating / len(total)
+
+    check = Ratings.query.filter(Ratings.user_id == current_user.id, Ratings.warehouse_id == warehouse_id).first()
+
+    if not check:
+        new_rating = Ratings(current_user.id, warehouse_id, averageRating)
+        db.session.add(new_rating)
+    else:
+        check.score = averageRating
+
+    db.session.commit()
 
     return redirect(url_for('main.dashboard'))
 

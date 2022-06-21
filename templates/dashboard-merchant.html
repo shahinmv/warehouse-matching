@@ -99,35 +99,55 @@
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Packaging</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateQualityPackaging" name ="rateQualityPackaging" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Labelling</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateQualityLabelling" name ="rateQualityLabelling" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Manual Geo Data Entry</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateQualityManualGeo" name ="rateQualityManualGeo" class="form-control"/>
-                                </div>
-                              </div>
-                            </div>
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.item_packaging%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Packaging</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityPackaging" name ="rateQualityPackaging" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
 
-                            <div class="tab-pane fade" id="pills-speed" role="tabpanel" aria-labelledby="tab-speed">
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.labelling%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Labelling</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityLabelling" name ="rateQualityLabelling" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.manual_geo_data_entry%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Manual Geo Data Entry</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityManualGeo" name ="rateQualityManualGeo" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                              </div>
+
+                            <!-- <div class="tab-pane fade" id="pills-speed" role="tabpanel" aria-labelledby="tab-speed">
                               <div class="row">
                                 <div class="col-sm-5">
                                   <p class="mb-0">Picking</p>
@@ -137,32 +157,52 @@
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Packaging</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateSpeedPackaging" name ="rateSpeedPackaging" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Labelling</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateSpeedLabelling" name ="rateSpeedLabelling" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Manual Geo Data Entry</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="rateSpeedManualGeo" name ="rateSpeedManualGeo" class="form-control"/>
-                                </div>
-                              </div>
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.item_packaging%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Packaging</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateSpeedPackaging" name ="rateSpeedPackaging" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.labelling%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Labelling</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateSpeedLabelling" name ="rateSpeedLabelling" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.manual_geo_data_entry%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Manual Geo Data Entry</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateSpeedManualGeo" name ="rateSpeedManualGeo" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
                             </div>
                             <div class="tab-pane fade" id="pills-price" role="tabpanel" aria-labelledby="tab-price">
                               <div class="row">
@@ -174,33 +214,53 @@
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Packaging</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="ratePricePackaging" name ="ratePricePackaging" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Labelling</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="ratePriceLabelling" name ="ratePriceLabelling" class="form-control"/>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-5">
-                                  <p class="mb-0">Manual Geo Data Entry</p>
-                                </div>
-                                <div class="col-sm-7">
-                                  <input type="number" id="ratePriceManualGeo" name ="ratePriceManualGeo" class="form-control"/>
-                                </div>
-                              </div>
-                          </div>
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.item_packaging%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Packaging</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityPackaging" name ="rateQualityPackaging" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.labelling%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Labelling</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityLabelling" name ="rateQualityLabelling" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for warehouse in active_warehouses %}
+                                {% if active.warehouse_id == warehouse.id %}
+                                  {% if warehouse.manual_geo_data_entry%}
+                                  <div class="row">
+                                    <div class="col-sm-5">
+                                      <p class="mb-0">Manual Geo Data Entry</p>
+                                    </div>
+                                    <div class="col-sm-7">
+                                      <input type="number" id="rateQualityManualGeo" name ="rateQualityManualGeo" class="form-control"/>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                          </div> -->
                           </div>
                             
                             </div>

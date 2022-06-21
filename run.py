@@ -10,6 +10,7 @@ from models.user import User
 from models.warehouse import Warehouse
 from models.warehouse_service import  WarehouseServices
 from models.warehouse_booking import  WarehouseBooking
+from models.ratings import Ratings
 
 from db import db
 
