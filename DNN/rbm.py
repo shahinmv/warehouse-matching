@@ -23,10 +23,5 @@ class RBM():
     def train(self, v0, vk, ph0, phk):
         self.W += (torch.mm(v0.t(), ph0) - torch.mm(vk.t(), phk)).t()
         #add zero to keep b as a tensor of 2 dimension
-        self.b += torch.sum((v0 - vk), 0)
-        self.a += torch.sum((ph0 - phk), 0)
-
-    def predict(self, x): # x: visible nodes
-        _, h = self.sample_h( x)
-        _, v = self.sample_v( h)
-        return v
+        self.v_B += torch.sum((v0 - vk), 0)
+        self.h_B += torch.sum((ph0 - phk), 0)
