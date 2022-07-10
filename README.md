@@ -81,7 +81,8 @@ For prices part, our algorithm creates 2 dictionaries which keeps the minimum an
 - PostgreSQL
 - Heroku
 - Google Maps API
-- Ajax
+- Ajax 
+- DBeaver 21.3.5
 
 ## Access to database
 **Host**:      ec2-54-76-43-89.eu-west-1.compute.amazonaws.com \
