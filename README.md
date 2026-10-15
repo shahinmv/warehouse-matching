@@ -84,12 +84,8 @@ For prices part, our algorithm creates 2 dictionaries which keeps the minimum an
 - Ajax 
 - DBeaver 21.3.5
 
-## Access to database
-**Host**:      ec2-54-76-43-89.eu-west-1.compute.amazonaws.com \
-**Database**:  d1s5qe2312f8bg \
-**Post**:      5432 \
-**Username**:  fnqgcgvmozpmyl \
-**Password**:  f28265da2ca5f4fddc9de7e25e5cf8c7c06c95739d5d2ce3c4275d0fb3cc922f 
+## Configuration
+Set these environment variables before running: `DATABASE_URL`, `SECRET_KEY`, `GOOGLE_MAPS_API_KEY`, `MAIL_USERNAME`, `MAIL_PASSWORD`.
 
 ## Access the website
 - [HERE](warehouse-thesis.herokuapp.com)
