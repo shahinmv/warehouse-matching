@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort
+import os
 import requests
 from db import db
 from flask_login import login_required, current_user
@@ -8,7 +9,7 @@ from models.warehouse_booking import WarehouseBooking
 from models.user import User
 import json
 
-API_KEY = "AIzaSyDPYgtducg288JoPwZ3utMYUbKt_nxtAu4"
+API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY", "")
 
 search = Blueprint('search', __name__)
 
